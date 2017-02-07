@@ -2,25 +2,7 @@ import { ListView } from 'antd-mobile';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const data = [
-	{
-		img: 'https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png',
-		title: '相约酒店',
-		des: '不是所有的兼职汪都需要风吹日晒',
-	},
-	{
-		img: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png',
-		title: '麦当劳邀您过周末',
-		des: '不是所有的兼职汪都需要风吹日晒',
-	},
-	{
-		img: 'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png',
-		title: '食惠周',
-		des: '不是所有的兼职汪都需要风吹日晒',
-	},
-];
-
-let index = data.length - 1;
+let index = -1;
 const NUM_ROWS = 20;
 let pageIndex = 0;
 
@@ -59,17 +41,8 @@ module.exports = {
 		}, 1000);
 	},
 	
-	getContent() {
-		const separator = (sectionID, rowID) => (
-			<div key={`${sectionID}-${rowID}`} style={{
-			    backgroundColor: '#F5F5F9',
-			    height: 8,
-			    borderTop: '1px solid #ECECED',
-			    borderBottom: '1px solid #ECECED',
-			  }}
-			/>
-	    );
-	    const row = (rowData, sectionID, rowID) => {
+	getRowRender(data) {
+		return (rowData, sectionID, rowID) => {
 	    	if (index < 0) {
 	    		index = data.length - 1;
 	    	}
@@ -81,20 +54,34 @@ module.exports = {
 	    				backgroundColor: 'white',
 	    			}}
 	    		>
-		    		<h3 style={{ padding: 2, marginBottom: '0.08rem', borderBottom: '1px solid #F6F6F6' }}>
-		    			{obj.title}
-		    		</h3>
 		    		<div style={{ display: '-webkit-box', display: 'flex' }}>
-		    			<img style={{ height: '1.28rem', marginRight: '0.08rem' }} src={obj.img} />
+		    			<a onClick={this.onTitleClick(123)}>
+		    				<img style={{ height: '1.28rem', marginTop: '0.2rem', marginRight: '0.12rem' }} src={obj.img} />
+		    			</a>
 		    			<div style={{ display: 'inline-block' }}>
-		    				<p>{obj.des}</p>
-		    				<p><span style={{ fontSize: '1.6em', color: '#FF6E27' }}>{rowID}</span>元/任务</p>
+		    				<p style={{ fontSize:'larger',marginBottom:'0',textAlign:'left' }}>
+		    					<a onClick={this.onTitleClick(123)}>{obj.title}</a>
+		    				</p>
+		    				<p style={{ textAlign:'left',marginTop:'0.12rem' }}>{obj.des}</p>
 		    			</div>
 		    		</div>
 	    		</div>
 	    	);
 	    };
-				
+	},
+	
+	getContent() {
+		let data = this.getData();
+		const separator = (sectionID, rowID) => (
+			<div key={`${sectionID}-${rowID}`} style={{
+			    backgroundColor: '#F5F5F9',
+			    height: 8,
+			    borderTop: '1px solid #ECECED',
+			    borderBottom: '1px solid #ECECED',
+			  }}
+			/>
+	    );
+		let row = this.getRowRender(data);
 		return (
 			<div style={{ backgroundColor: 'white', height: '100%', textAlign: 'center' }}>
 				<ListView ref="mainList"
