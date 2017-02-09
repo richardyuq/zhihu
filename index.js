@@ -1,8 +1,12 @@
+/**
+ * Class Entry for zhihu
+ */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { NavBar, TabBar, Icon } from 'antd-mobile';
 import Topic from './topic/index.js';
 import Question from './question/index.js';
+import Answer from './answer/index.js';
 import Discover from './discover/index.js';
 
 let Main = React.createClass({
@@ -14,13 +18,14 @@ let Main = React.createClass({
 	componentDidUpdate: function() {
 		this.refs['topic'] && this.refs['topic'].setEntry(this);
 		this.refs['question'] && this.refs['question'].setEntry(this);
+		this.refs['answer'] && this.refs['answer'].setEntry(this);
 		this.refs['discover'] && this.refs['discover'].setEntry(this);
 	},
 	
 	getInitialState() {
 		return {
 			selectedTab: 'blueTab',
-			flag: 0
+			flag: 0 // level
 		}
 	},
 	
@@ -35,6 +40,8 @@ let Main = React.createClass({
 			return <Topic ref='topic'/>;
 		} else if (tabText == '问题') {
 			return <Question ref='question'/>;
+		} else if (tabText == '回答') {
+			return <Answer ref='answer'/>;
 		} else if (tabText == '发现') {
 			return <Discover ref='discover'/>;
 		} else {
@@ -44,6 +51,7 @@ let Main = React.createClass({
 	
 	render() {
 		let NavTitle = "NavBar",tabText = "首页";
+		// NavBar title
 		if (this.state.selectedTab === 'blueTab') {
 			NavTitle = "首页";
 		} else if (this.state.selectedTab === 'redTab') {
@@ -51,9 +59,15 @@ let Main = React.createClass({
 		} else {
 			NavTitle = "我的";
 		}
+		// topic->question->answer
 		if (this.state.flag == 1) {
 			tabText = "问题";
+			NavTitle = "问题";
+		} else if (this.state.flag == 2) {
+			tabText = "回答";
+			NavTitle = "回答";
 		}
+		
 	    return (
 	      <div>
 	      	<div style={{ height: 8 }} />
@@ -80,6 +94,7 @@ let Main = React.createClass({
 	        			setTimeout(() => {
 	        				this.refs['topic'] && this.refs['topic'].refs["mainList"].refs["listview"].scrollTo(0,0);
 	        				this.refs['question'] && this.refs['question'].refs["mainList"].refs["listview"].scrollTo(0,0);
+	        				this.refs['answer'] && this.refs['answer'].refs["mainList"].refs["listview"].scrollTo(0,0);
 	        			}, 1000);
 	        		}}
 	        		>
@@ -96,7 +111,7 @@ let Main = React.createClass({
 		        			selectedTab: 'redTab',
 		        		});
 		        		setTimeout(() => {
-		        			this.refs['discover'].refs["mainList"].refs["listview"].scrollTo(0,0);
+		        			this.refs['discover'] && this.refs['discover'].refs["mainList"].refs["listview"].scrollTo(0,0);
 		        		}, 1000);
 		        	}}
 	        		>

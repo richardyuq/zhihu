@@ -1,6 +1,13 @@
+/**
+ * Class Topic
+ * function:
+ * 1、direct to question list
+ */
 import React from 'react';
 import ReactDOM from 'react-dom'; 
 import ListView from '../common/listView.js';
+
+let index = -1;
 
 const data = [
 	{
@@ -35,6 +42,10 @@ module.exports = React.createClass({
 		return data;
 	},
 	
+	/**
+	 * direct to answer/comment list
+	 * @see ../index.js
+	 */
 	onTitleClick(id) {
 		return (event) => {
 			console.log(id);
@@ -43,6 +54,34 @@ module.exports = React.createClass({
 	},
 
 	render() {
+		this.getRowRender = (data) => {
+			return (rowData, sectionID, rowID) => {
+		    	if (index < 0) {
+		    		index = data.length - 1;
+		    	}
+		    	const obj = data[index--];
+		    	return (
+		    		<div key={rowID}
+		    			style={{
+		    				padding: '0.08rem 0.16rem',
+		    				backgroundColor: 'white',
+		    			}}
+		    		>
+			    		<div style={{ display: '-webkit-box', display: 'flex' }}>
+			    			<a onClick={this.onTitleClick(123)}>
+			    				<img style={{ height: '1.28rem', marginTop: '0.2rem', marginRight: '0.12rem' }} src={obj.img} />
+			    			</a>
+			    			<div style={{ display: 'inline-block' }}>
+			    				<p style={{ fontSize:'larger',marginBottom:'0',textAlign:'left' }}>
+			    					<a onClick={this.onTitleClick(123)}>{obj.title}</a>
+			    				</p>
+			    				<p style={{ textAlign:'left',marginTop:'0.12rem' }}>{obj.des}</p>
+			    			</div>
+			    		</div>
+		    		</div>
+		    	);
+		    };
+		};
 		return this.getContent();
 	}
 });

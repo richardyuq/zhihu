@@ -1,3 +1,9 @@
+/**
+ * Class Question
+ * function:
+ * 1、listen the answer
+ * 2、direct to answer/comment list
+ */
 import React from 'react';
 import ReactDOM from 'react-dom'; 
 import ListView from '../common/listView.js';
@@ -34,6 +40,21 @@ module.exports = React.createClass({
 		return data;
 	},
 	
+	/**
+	 * direct to answer/comment list
+	 * @see ../index.js
+	 */
+	onTitleClick(id) {
+		return (event) => {
+			console.log(id);
+			this.entry.setFlag(2);
+		}
+	},
+	
+	/**
+	 * listen the answer
+	 * call the weixin pay interface
+	 */
 	onListen(id) {
 		return (event) => {
 			console.log(id);
@@ -55,7 +76,9 @@ module.exports = React.createClass({
 		    			}}
 		    		>
 	    				<p style={{ fontSize:'larger',marginBottom:'0',textAlign:'left' }}>
-	    					{obj.title}
+	    					<a onClick={this.onTitleClick(123)}>
+	    						{obj.title}
+	    					</a>
 	    				</p>
 	    				<a onClick={this.onListen(123)}>
 	    					<img style={{ height: '100%', marginTop: '0.2rem' }} src="http://7xoh8w.com1.z0.glb.clouddn.com/icon-listen.png" />
