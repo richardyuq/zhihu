@@ -47,13 +47,15 @@ module.exports = React.createClass({
 	 * @see ../index.js
 	 */
 	onTitleClick(id) {
+		let self = this;
 		return (event) => {
-			console.log(id);
-			this.entry.setFlag(1);
+			console.log(self);
+			self.entry.setFlag(1);
 		}
 	},
 
 	render() {
+		let self = this;
 		this.getRowRender = (data) => {
 			return (rowData, sectionID, rowID) => {
 		    	if (index < 0) {
@@ -68,12 +70,12 @@ module.exports = React.createClass({
 		    			}}
 		    		>
 			    		<div style={{ display: '-webkit-box', display: 'flex' }}>
-			    			<a onClick={this.onTitleClick(123)}>
+			    			<a onClick={self.onTitleClick(123)}>
 			    				<img style={{ height: '1.28rem', marginTop: '0.2rem', marginRight: '0.12rem' }} src={obj.img} />
 			    			</a>
 			    			<div style={{ display: 'inline-block' }}>
 			    				<p style={{ fontSize:'larger',marginBottom:'0',textAlign:'left' }}>
-			    					<a onClick={this.onTitleClick(123)}>{obj.title}</a>
+			    					<a onClick={self.onTitleClick(123)}>{obj.title}</a>
 			    				</p>
 			    				<p style={{ textAlign:'left',marginTop:'0.12rem' }}>{obj.des}</p>
 			    			</div>

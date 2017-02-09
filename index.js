@@ -8,6 +8,7 @@ import Topic from './topic/index.js';
 import Question from './question/index.js';
 import Answer from './answer/index.js';
 import Discover from './discover/index.js';
+import My from './my/index.js';
 
 let Main = React.createClass({
 	
@@ -45,27 +46,35 @@ let Main = React.createClass({
 		} else if (tabText == '发现') {
 			return <Discover ref='discover'/>;
 		} else {
-			// my
+			return <My ref="my"/>;
 		}	
 	},
 	
 	render() {
-		let NavTitle = "NavBar",tabText = "首页";
-		// NavBar title
-		if (this.state.selectedTab === 'blueTab') {
-			NavTitle = "首页";
-		} else if (this.state.selectedTab === 'redTab') {
-			NavTitle = "发现";
-		} else {
-			NavTitle = "我的";
-		}
+		let NavTitle = "NavTitle",tabText = "tabText";
 		// topic->question->answer
-		if (this.state.flag == 1) {
-			tabText = "问题";
-			NavTitle = "问题";
-		} else if (this.state.flag == 2) {
-			tabText = "回答";
-			NavTitle = "回答";
+		if (this.state.selectedTab === 'blueTab') {
+			if (this.state.flag == 0) {
+				tabText = "首页";
+				NavTitle = "首页";
+			} else if (this.state.flag == 1) {
+				tabText = "问题";
+				NavTitle = "问题";
+			} else if (this.state.flag == 2) {
+				tabText = "回答";
+				NavTitle = "回答";
+			}
+		} else if (this.state.selectedTab === 'redTab') {
+			if (this.state.flag == 1) {
+				tabText = "发现";
+				NavTitle = "发现";
+			} else if (this.state.flag == 2) {
+				tabText = "回答";
+				NavTitle = "回答";
+			}
+		} else {
+			tabText = "我的";
+			NavTitle = "我的";
 		}
 		
 	    return (
@@ -97,7 +106,7 @@ let Main = React.createClass({
 	        				this.refs['answer'] && this.refs['answer'].refs["mainList"].refs["listview"].scrollTo(0,0);
 	        			}, 1000);
 	        		}}
-	        		>
+	        	>
 	        		{this.renderTabContent(tabText)}
 	        	</TabBar.Item>
 	        	<TabBar.Item
@@ -109,13 +118,15 @@ let Main = React.createClass({
 		        	onPress={() => {
 		        		this.setState({
 		        			selectedTab: 'redTab',
+		        			flag: 1
 		        		});
 		        		setTimeout(() => {
 		        			this.refs['discover'] && this.refs['discover'].refs["mainList"].refs["listview"].scrollTo(0,0);
+		        			this.refs['answer'] && this.refs['answer'].refs["mainList"].refs["listview"].scrollTo(0,0);
 		        		}, 1000);
 		        	}}
-	        		>
-	        		{this.renderTabContent('发现')}
+	        	>
+	        		{this.renderTabContent(tabText)}
 	        	</TabBar.Item>
 	        	<TabBar.Item
 	        		icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/cKhfyLTszUeFARPgfokz.png' }}
@@ -126,6 +137,7 @@ let Main = React.createClass({
 			        onPress={() => {
 			        	this.setState({
 			        		selectedTab: 'yellowTab',
+			        		flag: 0
 			        	});
 			        }}
 	        	>
