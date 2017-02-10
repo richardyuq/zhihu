@@ -28,9 +28,9 @@ let index = -1;
 module.exports = React.createClass({
 	mixins: [ListView],
 	
-	setEntry: function(entry) {
-    	this.entry = entry;
-    },
+	propTypes: {
+    	entry: React.PropTypes.object.isRequired,
+  	},
 	
 	getInitialState() {
 		return this.getContentInitialState();
@@ -45,9 +45,10 @@ module.exports = React.createClass({
 	 * @see ../index.js
 	 */
 	onTitleClick(id) {
+		let entry = this.props.entry;
 		return (event) => {
 			console.log(id);
-			this.entry.setFlag(2);
+			entry.setFlag(2);
 		}
 	},
 	

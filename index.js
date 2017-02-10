@@ -12,17 +12,6 @@ import My from './my/index.js';
 
 let Main = React.createClass({
 	
-	componentDidMount: function() {
-		this.refs['topic'] && this.refs['topic'].setEntry(this);
-	},
-	
-	componentDidUpdate: function() {
-		this.refs['topic'] && this.refs['topic'].setEntry(this);
-		this.refs['question'] && this.refs['question'].setEntry(this);
-		this.refs['answer'] && this.refs['answer'].setEntry(this);
-		this.refs['discover'] && this.refs['discover'].setEntry(this);
-	},
-	
 	getInitialState() {
 		return {
 			selectedTab: 'blueTab',
@@ -38,13 +27,13 @@ let Main = React.createClass({
 	
 	renderTabContent(tabText) {
 		if (tabText == '首页') {
-			return <Topic ref='topic'/>;
+			return <Topic ref="topic" entry={this}/>;
 		} else if (tabText == '问题') {
-			return <Question ref='question'/>;
+			return <Question ref="question" entry={this}/>;
 		} else if (tabText == '回答') {
-			return <Answer ref='answer'/>;
+			return <Answer ref="answer" entry={this}/>;
 		} else if (tabText == '发现') {
-			return <Discover ref='discover'/>;
+			return <Discover ref="discover" entry={this}/>;
 		} else {
 			return <My ref="my"/>;
 		}	

@@ -47,7 +47,7 @@ let My = React.createClass({
 	        		{...getFieldProps('question')}
 			        placeholder="输入你的问题，回答被其他人收听后，你将分成收入的一半。若超过72小时未被回答，费用自动退回。"
 			        count={200}
-			        rows={10}
+			        rows={5}
 			        autoFocus autoHeight
 		        />
 		        <Button type="primary" style={{ margin: '16px 0', padding: '0 16px' }}>

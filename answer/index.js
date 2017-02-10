@@ -43,9 +43,9 @@ let index = -1;
 module.exports = React.createClass({
 	mixins: [ListView],
 	
-	setEntry: function(entry) {
-    	this.entry = entry;
-    },
+	propTypes: {
+    	entry: React.PropTypes.object.isRequired,
+  	},
 	
 	getInitialState() {
 		return this.getContentInitialState();
