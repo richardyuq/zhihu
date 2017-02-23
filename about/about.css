@@ -1,0 +1,23 @@
+.flex-container {
+  padding: 0.18rem;
+  background-color: white;
+  border-bottom: 1px solid rgb(253,253,253);
+}
+.flex-container .title {
+  color: #888;
+  margin: 0.20rem 0;
+}
+.flex-container .inline {
+  text-align: center;
+  width: 60%!important;
+  margin: 0.18rem 0.18rem 0.18rem 0;
+}
+.flex-container .inline2 {
+  text-align: center;
+  width: 80%!important;
+  margin: 0.18rem 0.18rem 0.18rem 0.18rem;
+}
+.flex-container .small {
+  height: 0.4rem!important;
+  line-height: 0.4rem!important;
+}
