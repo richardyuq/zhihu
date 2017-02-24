@@ -6,7 +6,10 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom'; 
+import { Carousel } from 'antd-mobile';
 import ListView from '../common/listView.js';
+
+import "./question.css";
 
 const data = [
 	{
@@ -48,7 +51,7 @@ module.exports = React.createClass({
 		let entry = this.props.entry;
 		return (event) => {
 			console.log(id);
-			entry.setFlag(2);
+			entry.setFlag(1);
 		}
 	},
 	
@@ -63,6 +66,34 @@ module.exports = React.createClass({
 	},
 	
 	render() {
+		this.getHeader = (data) => {
+			return (
+				<div className="need-left-right-margin">
+		    		<div style={{padding:'0.1rem 0',borderBottom:'1px solid rgb(253,253,253)'}}>
+			    		<div style={{float:'left',backgroundColor:'red',color:'white',margin:'0.1rem',padding:'0.1rem'}}>每日头条</div>
+			    		<div style={{float:'right',lineHeight:'0.72rem',marginRight:'0.1rem'}}>查看全部 > </div>
+			    		<div style={{clear:'both'}}></div>
+		    		</div>
+				    <Carousel
+				      className="my-carousel" 
+				      style={{height: "221px"}}
+				      autoplay={true} 
+				      infinite
+				    >
+				        <a href="#" key={1}><img src={`https://zos.alipayobjects.com/rmsportal/AiyWuByWklrrUDlFignR.png`} /></a>
+				        <a href="#" key={2}><img src={`https://zos.alipayobjects.com/rmsportal/TekJlZRVCjLFexlOCuWn.png`} /></a>
+				        <a href="#" key={3}><img src={`https://zos.alipayobjects.com/rmsportal/AiyWuByWklrrUDlFignR.png`} /></a>
+				    </Carousel>
+			        <div style={{
+					    backgroundColor: '#F5F5F9',
+					    height: 8,
+					    borderTop: '1px solid #ECECED',
+					    borderBottom: '0px solid #ECECED',
+					  }}
+					/>
+				</div>
+			);
+		};
 		this.getRowRender = (data) => {
 			return (rowData, sectionID, rowID) => {
 		    	if (index < 0) {

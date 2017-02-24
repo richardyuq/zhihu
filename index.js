@@ -4,7 +4,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { NavBar, TabBar, Icon } from 'antd-mobile';
-import Topic from './topic/index.js';
 import Question from './question/index.js';
 import Answer from './answer/index.js';
 import Discover from './discover/index.js';
@@ -26,9 +25,8 @@ let Main = React.createClass({
 	},
 	
 	renderTabContent(tabText) {
+		console.log(tabText);
 		if (tabText == '首页') {
-			return <Topic ref="topic" entry={this}/>;
-		} else if (tabText == '问题') {
 			return <Question ref="question" entry={this}/>;
 		} else if (tabText == '回答') {
 			return <Answer ref="answer" entry={this}/>;
@@ -41,23 +39,20 @@ let Main = React.createClass({
 	
 	render() {
 		let NavTitle = "NavTitle",tabText = "tabText";
-		// topic->question->answer
+		// question->answer
 		if (this.state.selectedTab === 'blueTab') {
 			if (this.state.flag == 0) {
 				tabText = "首页";
 				NavTitle = "首页";
 			} else if (this.state.flag == 1) {
-				tabText = "问题";
-				NavTitle = "问题";
-			} else if (this.state.flag == 2) {
 				tabText = "回答";
 				NavTitle = "回答";
 			}
 		} else if (this.state.selectedTab === 'redTab') {
-			if (this.state.flag == 1) {
+			if (this.state.flag == 0) {
 				tabText = "发现";
 				NavTitle = "发现";
-			} else if (this.state.flag == 2) {
+			} else if (this.state.flag == 1) {
 				tabText = "回答";
 				NavTitle = "回答";
 			}
@@ -90,7 +85,6 @@ let Main = React.createClass({
 	        				flag: 0
 	        			});
 	        			setTimeout(() => {
-	        				this.refs['topic'] && this.refs['topic'].refs["mainList"].refs["listview"].scrollTo(0,0);
 	        				this.refs['question'] && this.refs['question'].refs["mainList"].refs["listview"].scrollTo(0,0);
 	        				this.refs['answer'] && this.refs['answer'].refs["mainList"].refs["listview"].scrollTo(0,0);
 	        			}, 1000);
