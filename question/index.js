@@ -13,16 +13,34 @@ import "./question.css";
 
 const data = [
 	{
-		title: '因为工作原因睡眠饮食都不规律，导致胃疼，应该咋样搭配饮食才能更好的调整受伤的胃呢？',
-		des: '价值1元，2人听过，1人觉得值'
+		title: '有什么简单实用的记忆单词方法吗？另外口语很差不敢开口说，有什么办法消除这种心理障碍吗？',
+		len: '59"',
+		des: '50人听过，36人觉得有用',
+		answerer: {
+			name: 'Andy Wang',
+			icon: 'http://7xoh8w.com1.z0.glb.clouddn.com/home_list_portrait.png',
+			title: '新东方英语口语外教'
+		}
 	},
 	{
-		title: '最近曝光了很多食品添加了甲醛防腐，这样对健康有怎样的伤害？',
-		des: '价值1元，2人听过，1人觉得值'
+		title: '最近《中国诗词大会》第二季吸引了不少人的眼球，为什么一档背诵诗词的节目能如此火爆呢？',
+		len: '56"',
+		des: '188人听过，153人觉得有用',
+		answerer: {
+			name: '康震',
+			icon: 'http://7xoh8w.com1.z0.glb.clouddn.com/home_list_portrait.png',
+			title: '北京师范大学文学院教授'
+		}
 	},
 	{
-		title: '元宵节吃春卷、元宵的习俗是从什么时候开始的？',
-		des: '价值1元，2人听过，1人觉得值'
+		title: '一遇到比较重大的考试就失眠，考前特别紧张，我该如何面对这种情况？',
+		len: '55"',
+		des: '28人听过，18人觉得有用',
+		answerer: {
+			name: '姜小花',
+			icon: 'http://7xoh8w.com1.z0.glb.clouddn.com/home_list_portrait.png',
+			title: '教育心理学专家'
+		}
 	},
 ];
 
@@ -69,28 +87,16 @@ module.exports = React.createClass({
 		this.getHeader = (data) => {
 			return (
 				<div className="need-left-right-margin">
-		    		<div style={{padding:'0.1rem 0',borderBottom:'1px solid rgb(253,253,253)'}}>
-			    		<div style={{float:'left',backgroundColor:'red',color:'white',margin:'0.1rem',padding:'0.1rem'}}>每日头条</div>
-			    		<div style={{float:'right',lineHeight:'0.72rem',marginRight:'0.1rem'}}>查看全部 > </div>
-			    		<div style={{clear:'both'}}></div>
-		    		</div>
 				    <Carousel
 				      className="my-carousel" 
-				      style={{height: "221px"}}
+				      style={{height: "166px"}}
 				      autoplay={true} 
 				      infinite
 				    >
-				        <a href="#" key={1}><img src={`https://zos.alipayobjects.com/rmsportal/AiyWuByWklrrUDlFignR.png`} /></a>
-				        <a href="#" key={2}><img src={`https://zos.alipayobjects.com/rmsportal/TekJlZRVCjLFexlOCuWn.png`} /></a>
-				        <a href="#" key={3}><img src={`https://zos.alipayobjects.com/rmsportal/AiyWuByWklrrUDlFignR.png`} /></a>
+				        <a href="#" key={1}><img src={`http://7xoh8w.com1.z0.glb.clouddn.com/home_banner.png`} /></a>
+				        <a href="#" key={2}><img src={`http://7xoh8w.com1.z0.glb.clouddn.com/home_banner.png`} /></a>
+				        <a href="#" key={3}><img src={`http://7xoh8w.com1.z0.glb.clouddn.com/home_banner.png`} /></a>
 				    </Carousel>
-			        <div style={{
-					    backgroundColor: '#F5F5F9',
-					    height: 8,
-					    borderTop: '1px solid #ECECED',
-					    borderBottom: '0px solid #ECECED',
-					  }}
-					/>
 				</div>
 			);
 		};
@@ -101,21 +107,29 @@ module.exports = React.createClass({
 		    	}
 		    	const obj = data[index--];
 		    	return (
-		    		<div key={rowID}
-		    			style={{
-		    				padding: '0.08rem 0.16rem',
-		    				backgroundColor: 'white',
-		    			}}
+		    		<div className="row-container"
+		    			key={rowID}
 		    		>
-	    				<p style={{ fontSize:'larger',marginBottom:'0',textAlign:'left' }}>
+	    				<p style={{ fontSize:'larger',marginTop: '0.2rem' }}>
 	    					<a onClick={this.onTitleClick(123)}>
 	    						{obj.title}
 	    					</a>
 	    				</p>
-	    				<a onClick={this.onListen(123)}>
-	    					<img style={{ height: '100%', marginTop: '0.2rem' }} src="http://7xoh8w.com1.z0.glb.clouddn.com/icon-listen.png" />
-	    				</a>
-	    				<p style={{ textAlign:'left',marginTop:'0.12rem' }}>{obj.des}</p>
+	    				<p className="floatLine">
+	    					<img src={obj.answerer.icon} width="48px" height="48px" className="answerer-icon"/>
+	    					<img src="http://7xoh8w.com1.z0.glb.clouddn.com/home_list_listen.png" width="230px" height="48px"/>
+	    					<span className="len">{obj.len}</span>
+	    					<img src="http://7xoh8w.com1.z0.glb.clouddn.com/%E9%A6%96%E9%A1%B5_09.png" width="36px" height="36px" style={{ paddingTop: '0.1rem' }}/>
+	    					<div style={{clear:'both'}}></div>
+	    				</p>
+	    				<p style={{ fontSize:'small',marginLeft: '0.1rem',marginTop: '0.1rem' }}>
+	    					{obj.answerer.name}
+	    				</p>
+	    				<p className="floatLine" style={{ color:'rgb(185,185,185)',fontSize:'x-small',marginTop: '0' }}>
+	    					<span>{obj.answerer.title}</span>	
+	    					<span style={{float:'right'}}>{obj.des}</span>
+	    					<div style={{clear:'both'}}></div>
+	    				</p>
 		    		</div>
 		    	);
 		    };

@@ -15,3 +15,33 @@
   line-height: 0.72rem;
   padding-left: 0.2rem;
 }
+
+.row-container {
+  padding: 0.08rem 0.16rem;
+  background-color: rgb(245,245,245);
+}
+
+.row-container p {
+  margin-top: 0.2rem;
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.row-container .floatLine {
+  line-height: 48px;
+  position: relative;
+}
+
+.row-container .floatLine img,span {
+  display: block;
+  float:left;
+}
+
+.row-container .answerer-icon {
+  margin-right: 0.4rem;
+}
+.row-container .len {
+  line-height: .9rem;
+  height: .9rem;
+  margin-right: 0.4rem;
+}

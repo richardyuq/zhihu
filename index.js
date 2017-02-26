@@ -63,8 +63,7 @@ let Main = React.createClass({
 		
 	    return (
 	      <div>
-	      	<div style={{ height: 8 }} />
-			<NavBar leftContent="返回" mode="light" onLeftClick={() => console.log('onLeftClick')}
+			<NavBar mode="light" onLeftClick={() => console.log('onLeftClick')}
 				rightContent={[<Icon key="0" type="search" />, <Icon key="1" type="ellipsis" />]}
 			>{NavTitle}</NavBar>
 			<TabBar
