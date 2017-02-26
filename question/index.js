@@ -10,6 +10,7 @@ import { Carousel } from 'antd-mobile';
 import ListView from '../common/listView.js';
 
 import "./question.css";
+import "../common/question-row.css";
 
 const data = [
 	{
@@ -25,7 +26,7 @@ const data = [
 	{
 		title: '最近《中国诗词大会》第二季吸引了不少人的眼球，为什么一档背诵诗词的节目能如此火爆呢？',
 		len: '56"',
-		des: '188人听过，153人觉得有用',
+		des: '回答价值28元，188人听过，153人觉得有用',
 		answerer: {
 			name: '康震',
 			icon: 'http://7xoh8w.com1.z0.glb.clouddn.com/home_list_portrait.png',
@@ -115,19 +116,19 @@ module.exports = React.createClass({
 	    						{obj.title}
 	    					</a>
 	    				</p>
-	    				<p className="floatLine">
-	    					<img src={obj.answerer.icon} width="48px" height="48px" className="answerer-icon"/>
-	    					<img src="http://7xoh8w.com1.z0.glb.clouddn.com/home_list_listen.png" width="230px" height="48px"/>
-	    					<span className="len">{obj.len}</span>
-	    					<img src="http://7xoh8w.com1.z0.glb.clouddn.com/%E9%A6%96%E9%A1%B5_09.png" width="36px" height="36px" style={{ paddingTop: '0.1rem' }}/>
+	    				<p className="float-line">
+	    					<img src={obj.answerer.icon} width="48px" height="48px" className="item answerer-icon"/>
+	    					<img src="http://7xoh8w.com1.z0.glb.clouddn.com/home_list_listen.png" width="230px" height="48px" className="item"/>
+	    					<span className="item len">{obj.len}</span>
+	    					<img src="http://7xoh8w.com1.z0.glb.clouddn.com/home_list_useful.png" width="36px" height="36px" className="item" style={{ paddingTop: '0.1rem' }}/>
 	    					<div style={{clear:'both'}}></div>
 	    				</p>
 	    				<p style={{ fontSize:'small',marginLeft: '0.1rem',marginTop: '0.1rem' }}>
 	    					{obj.answerer.name}
 	    				</p>
-	    				<p className="floatLine" style={{ color:'rgb(185,185,185)',fontSize:'x-small',marginTop: '0' }}>
-	    					<span>{obj.answerer.title}</span>	
-	    					<span style={{float:'right'}}>{obj.des}</span>
+	    				<p className="float-line" style={{ color:'rgb(185,185,185)',fontSize:'x-small',marginTop: '0' }}>
+	    					<span className="item">{obj.answerer.title}</span>	
+	    					<span className="item" style={{float:'right'}}>{obj.des}</span>
 	    					<div style={{clear:'both'}}></div>
 	    				</p>
 		    		</div>

@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import { NavBar, TabBar, Icon } from 'antd-mobile';
 import Question from './question/index.js';
 import Answer from './answer/index.js';
+import Answerer from './answerer/index.js';
 import Discover from './discover/index.js';
 import My from './my/index.js';
 
@@ -25,11 +26,12 @@ let Main = React.createClass({
 	},
 	
 	renderTabContent(tabText) {
-		console.log(tabText);
-		if (tabText == '首页') {
+		if (tabText == '问题') {
 			return <Question ref="question" entry={this}/>;
 		} else if (tabText == '回答') {
 			return <Answer ref="answer" entry={this}/>;
+		} else if (tabText == '答主') {
+			return <Answerer ref="answerer" entry={this}/>;
 		} else if (tabText == '发现') {
 			return <Discover ref="discover" entry={this}/>;
 		} else {
@@ -39,14 +41,16 @@ let Main = React.createClass({
 	
 	render() {
 		let NavTitle = "NavTitle",tabText = "tabText";
-		// question->answer
 		if (this.state.selectedTab === 'blueTab') {
 			if (this.state.flag == 0) {
-				tabText = "首页";
+				tabText = "问题";
 				NavTitle = "首页";
 			} else if (this.state.flag == 1) {
 				tabText = "回答";
-				NavTitle = "回答";
+				NavTitle = "问题详情";
+			} else if (this.state.flag == 2) {
+				tabText = "答主";
+				NavTitle = "答主的主页";
 			}
 		} else if (this.state.selectedTab === 'redTab') {
 			if (this.state.flag == 0) {
@@ -54,7 +58,7 @@ let Main = React.createClass({
 				NavTitle = "发现";
 			} else if (this.state.flag == 1) {
 				tabText = "回答";
-				NavTitle = "回答";
+				NavTitle = "问题详情";
 			}
 		} else {
 			tabText = "我的";
@@ -77,7 +81,7 @@ let Main = React.createClass({
 	        		icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/UNQhIatjpNZHjVf.png' }}
 	        		selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/HLkBvJOKnmOfBPO.png' }}
 	        		selected={this.state.selectedTab === 'blueTab'}
-	        		badge={1}
+	        		badge={0}
 	        		onPress={() => {
 	        			this.setState({
 	        				selectedTab: 'blueTab',
