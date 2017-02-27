@@ -6,7 +6,7 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { List, TextareaItem, Button, SegmentedControl } from 'antd-mobile';
+import { List, TextareaItem, Button } from 'antd-mobile';
 import { createForm } from 'rc-form';
 
 import "../common/question-row.css";
@@ -18,6 +18,10 @@ const data = {
 }
 
 let My = React.createClass({
+	
+	propTypes: {
+    	entry: React.PropTypes.object.isRequired,
+  	},
 	
 	getInitialState() {
 		return {

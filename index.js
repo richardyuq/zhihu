@@ -68,8 +68,9 @@ let Main = React.createClass({
 				tabText = "发现";
 				NavTitle = "发现";
 			} else if (this.state.flag == 1) {
-				tabText = "回答";
-				NavTitle = "问题详情";
+				tabText = "答主";
+				NavTitle = "答主的主页";
+				NavLeft = "返回";
 			}
 		} else {
 			tabText = "我的";
@@ -113,7 +114,7 @@ let Main = React.createClass({
 		        	onPress={() => {
 		        		this.setState({
 		        			selectedTab: 'redTab',
-		        			flag: 1
+		        			flag: 0
 		        		});
 		        		setTimeout(() => {
 		        			this.refs['discover'] && this.refs['discover'].refs["mainList"].refs["listview"].scrollTo(0,0);

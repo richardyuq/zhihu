@@ -1,5 +1,5 @@
 /**
- * Class Entry for zhihu
+ * Class Pay
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
