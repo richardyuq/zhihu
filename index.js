@@ -39,8 +39,17 @@ let Main = React.createClass({
 		}	
 	},
 	
+	onClickNarLeft() {
+		return (event) => {
+			var f = this.state.flag;
+			if (f > 0) {
+				this.setFlag(--f);
+			}
+		}
+	},
+	
 	render() {
-		let NavTitle = "NavTitle",tabText = "tabText";
+		let NavTitle = "NavTitle",tabText = "tabText",NavLeft = null;
 		if (this.state.selectedTab === 'blueTab') {
 			if (this.state.flag == 0) {
 				tabText = "问题";
@@ -48,9 +57,11 @@ let Main = React.createClass({
 			} else if (this.state.flag == 1) {
 				tabText = "回答";
 				NavTitle = "问题详情";
+				NavLeft = "返回";
 			} else if (this.state.flag == 2) {
 				tabText = "答主";
 				NavTitle = "答主的主页";
+				NavLeft = "返回";
 			}
 		} else if (this.state.selectedTab === 'redTab') {
 			if (this.state.flag == 0) {
@@ -67,9 +78,7 @@ let Main = React.createClass({
 		
 	    return (
 	      <div>
-			<NavBar mode="light" onLeftClick={() => console.log('onLeftClick')}
-				rightContent={[<Icon key="0" type="search" />, <Icon key="1" type="ellipsis" />]}
-			>{NavTitle}</NavBar>
+			<NavBar leftContent={NavLeft} mode="light" onLeftClick={this.onClickNarLeft()}>{NavTitle}</NavBar>
 			<TabBar
 	        	unselectedTintColor="#949494"
 	        	tintColor="#33A3F4"

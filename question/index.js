@@ -69,7 +69,6 @@ module.exports = React.createClass({
 	onTitleClick(id) {
 		let entry = this.props.entry;
 		return (event) => {
-			console.log(id);
 			entry.setFlag(1);
 		}
 	},

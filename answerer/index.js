@@ -36,7 +36,7 @@ let My = React.createClass({
 	        	<div className="row-container" style={{ backgroundColor:'white', borderBottom: '1px solid rgb(213,213,213)' }}>
 	        		<p className="float-line" style={{marginBottom: '0.2rem'}}>
 	        			<img className="item answerer-icon" src="http://7xoh8w.com1.z0.glb.clouddn.com/answerer_portrait.png"/>
-	        			<div style={{ float:'left',position: 'relative' }}>
+	        			<div style={{ float:'left',position: 'relative',marginTop: '0.2rem' }}>
 							<span className="item">{data.name}</span>
 							<div style={{clear:'both'}}></div>
 							<span className="item" style={{ color:'rgb(185,185,185)',fontSize:'x-small' }}>{data.des}</span>
@@ -56,9 +56,11 @@ let My = React.createClass({
 			        rows={5}
 			        autoFocus autoHeight
 		        />
-		        <Button type="primary" style={{ margin: '16px 0', padding: '0 16px' }}>
-		        	提问
-		        </Button>
+			    <div style={{ textAlign: 'center' }}>
+			        <Button type="primary" style={{ backgroundColor: 'rgb(0,191,173)', width: '100px', margin: '16px auto', padding: '0 16px' }}>
+			        	提问
+			        </Button>
+		        </div>
 	        </List>
 	    );
 	}

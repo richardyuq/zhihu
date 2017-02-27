@@ -99,7 +99,7 @@ module.exports = React.createClass({
 						<div style={{clear:'both'}}></div>
 					</p>
 					<div style={{ textAlign: 'center' }}>
-						<Button type="primary" onClick={this.onAsk()} style={{ margin:'0 auto', width: '160px',padding: '0 16px' }}>
+						<Button type="primary" onClick={this.onAsk()} style={{ backgroundColor: 'rgb(0,191,173)', margin:'16px auto', width: '160px',padding: '0 16px' }}>
 				        	向TA提问
 				        </Button>
 				    </div>
