@@ -10,6 +10,27 @@ import { Flex } from 'antd-mobile';
 
 import "./record.css";
 
+let timer = function() {
+	this.minute = 0;
+	this.second = 1;
+	
+	this.add = function() {
+		this.second ++;
+		if (this.second >= 60) {
+			this.second = 0;
+			this.minute = 1;
+		}
+	}
+	
+	this.show = function() {
+		if (this.second < 10) {
+			return this.minute + ":0" + this.second;
+		} else {
+			return this.minute + ":" + this.second;
+		}
+	}
+}
+
 module.exports = React.createClass({
 	
 	propTypes: {
@@ -19,7 +40,7 @@ module.exports = React.createClass({
   	getInitialState() {
 		return {
 			icon: 'http://7xoh8w.com1.z0.glb.clouddn.com/record_start.png',
-			time: 0.00,
+			time: "0:00",
 			info1Display: 'block',
 			info2Display: 'none',
 			info3Display: 'none',
@@ -32,23 +53,25 @@ module.exports = React.createClass({
 		return (event) => {
 			var src = event.target.src;
 			if (src.indexOf('start') > 0) { //press start
+				let t = new timer();
 				this.setState({
 					icon : 'http://7xoh8w.com1.z0.glb.clouddn.com/record_stop.png',
-					time: 0.01,
+					time: t.show(),
 					info1Display: 'none',
 					info2Display: 'block',
 					info3Display: 'none',
 					actionInfoDisplay: 'none'
 				});
 				setInterval(() => {
+					t.add();
 					this.setState({
-						time: this.state.time + 0.01
+						time: t.show()
 					});
 				},1000);
 			} else if (src.indexOf('stop') > 0) { //press stop
 				this.setState({
 					icon : 'http://7xoh8w.com1.z0.glb.clouddn.com/record_play.png',
-					time: 0.01,
+					time: "0:00",
 					info1Display: 'none',
 					info2Display: 'none',
 					info3Display: 'block',
