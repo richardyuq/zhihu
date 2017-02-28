@@ -1,33 +1,19 @@
 /**
- * Class My
+ * Class My Menu
  * function:
- * 1、ask a question
- * 2、ask list/listen list
+ * 1、My action menu
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { List, TextareaItem, Button, SegmentedControl } from 'antd-mobile';
-import { createForm } from 'rc-form';
+import { List, Button, Flex } from 'antd-mobile';
 
-const data = [
-	{
-		img: 'http://7xoh8w.com1.z0.glb.clouddn.com/icon-law.png',
-		title: '懂点法律避点坑',
-		des: '50个问题，100个回答，568个关注者。'
-	},
-	{
-		img: 'http://7xoh8w.com1.z0.glb.clouddn.com/icon-love.png',
-		title: '我就想谈个恋爱，怎么就这么难？',
-		des: '50个问题，100个回答，568个关注者。'
-	},
-	{
-		img: 'http://7xoh8w.com1.z0.glb.clouddn.com/icon-job.png',
-		title: '如何规划自己的职业生涯',
-		des: '50个问题，100个回答，568个关注者。'
-	},
-];
+import "../common/question-row.css";
 
-let My = React.createClass({
+module.exports = React.createClass({
+	
+	propTypes: {
+    	entry: React.PropTypes.object.isRequired,
+  	},
 	
 	getInitialState() {
 		return {
@@ -35,32 +21,68 @@ let My = React.createClass({
 		};
 	},
 	
-	getData() {
-		return data;
+	onAuth() {
+		let entry = this.props.entry;
+		return (event) => {
+			entry.setFlag(1);
+		}
+	},
+	
+	on2Asks() {
+		let entry = this.props.entry;
+		return (event) => {
+			entry.setFlag(2);
+		}
+	},
+	
+	on2Answeres() {
+		let entry = this.props.entry;
+		return (event) => {
+			entry.setFlag(4);
+		}
 	},
 	
 	render() {
-	    const { getFieldProps } = this.props.form;
+		const padding = "0.6rem";
 	    return (
-	        <List>
-	        	<TextareaItem
-	        		{...getFieldProps('question')}
-			        placeholder="输入你的问题，回答被其他人收听后，你将分成收入的一半。若超过72小时未被回答，费用自动退回。"
-			        count={200}
-			        rows={5}
-			        autoFocus autoHeight
-		        />
-		        <Button type="primary" style={{ margin: '16px 0', padding: '0 16px' }}>
-		          付费10元提问
-		        </Button>
-		        <div style={{ height: 8 }} />
-		        <SegmentedControl values={['我问过的', '我听过的']} />
-		        <div style={{ height: 300 }} />
-	        </List>
+	        <list>
+	        	<div style={{textAlign: 'center'}}>
+	        		<img src="http://7xoh8w.com1.z0.glb.clouddn.com/my_portrait.png" width="120px" height="90px"/>
+	        		<div>小明同学</div>
+	        		<Button type="primary" onClick={this.onAuth()} style={{ backgroundColor: 'rgb(0,191,173)', width: '160px', margin: '16px auto', padding: '0 16px' }}>
+		        		认证成为答主
+		        	</Button>
+		        	<div>提过10个问题，答过0个问题</div>
+		        	<hr/>
+		        	<div className="row-container" style={{ padding: '0' }}>
+		        		<Flex justify="center" align="baseline" wrap="wrap">
+		        			<div style={{padding: padding}}>
+		        				<a onClick={this.on2Asks()}>
+		        					<img src="http://7xoh8w.com1.z0.glb.clouddn.com/my_asks.png" width="60px" height="60px"/>
+		        				</a>	
+		        			</div>
+		        			<div style={{padding: padding}}>	
+		        				<a onClick={this.on2Answeres()}>	
+		        					<img src="http://7xoh8w.com1.z0.glb.clouddn.com/my_answeres.png" width="60px" height="60px"/>
+		        				</a>
+		        			</div>
+		        			<div style={{padding: padding}}>	
+		        				<img src="http://7xoh8w.com1.z0.glb.clouddn.com/my_listens.png" width="60px" height="60px"/>
+		        			</div>
+		        			<div style={{padding: padding}}>	
+		        				<img src="http://7xoh8w.com1.z0.glb.clouddn.com/my_incomes.png" width="60px" height="60px"/>
+		        			</div>
+		        			<div style={{padding: padding}}>	
+		        				<img src="http://7xoh8w.com1.z0.glb.clouddn.com/my_configs.png" width="60px" height="60px"/>
+		        			</div>
+		        			<div style={{padding: padding}}>	
+		        				<img src="http://7xoh8w.com1.z0.glb.clouddn.com/my_services.png" width="60px" height="60px"/>
+		        			</div>
+		        		</Flex>		
+		        	</div>
+		        	<hr/>
+	        	</div>
+	        </list>
 	    );
 	}
 });
-
-My = createForm()(My);
-
-module.exports = My;

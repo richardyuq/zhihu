@@ -9,6 +9,10 @@ import Answer from './answer/index.js';
 import Answerer from './answerer/index.js';
 import Discover from './discover/index.js';
 import My from './my/index.js';
+import Auth from './my/authForm.js';
+import MyAsks from './my/myAsks.js';
+import MyAnsweres from './my/myAnsweres.js';
+import Record from './Record/index.js';
 
 let Main = React.createClass({
 	
@@ -34,16 +38,30 @@ let Main = React.createClass({
 			return <Answerer ref="answerer" entry={this}/>;
 		} else if (tabText == '发现') {
 			return <Discover ref="discover" entry={this}/>;
+		} else if (tabText == '我的') {
+			return <My ref="my" entry={this}/>;
+		} else if (tabText == '认证') {
+			return <Auth ref="auth" entry={this}/>;
+		} else if (tabText == '我问') {
+			return <MyAsks ref="myAsks" entry={this}/>;
+		} else if (tabText == '我答') {
+			return <MyAnsweres ref="myAnsweres" entry={this}/>;
+		} else if (tabText == '录音') {
+			return <Record ref="record" entry={this}/>;
 		} else {
-			return <My ref="my"/>;
-		}	
+			// nothing
+		}	 	
 	},
 	
 	onClickNarLeft() {
 		return (event) => {
-			var f = this.state.flag;
-			if (f > 0) {
-				this.setFlag(--f);
+			var f = this.state.flag,tab = this.state.selectedTab;
+			if (tab !== 'yellowTab') {
+				if (f > 0) {
+					this.setFlag(--f);
+				}
+			} else {
+				this.setFlag(0);
 			}
 		}
 	},
@@ -73,8 +91,30 @@ let Main = React.createClass({
 				NavLeft = "返回";
 			}
 		} else {
-			tabText = "我的";
-			NavTitle = "我的";
+			if (this.state.flag == 0) {
+				tabText = "我的";
+				NavTitle = "我的";
+			} else if (this.state.flag == 1) {
+				tabText = "认证";
+				NavTitle = "认证为答主";
+				NavLeft = "返回";
+			} else if (this.state.flag == 2) {
+				tabText = "我问";
+				NavTitle = "我问";
+				NavLeft = "返回";
+			} else if (this.state.flag == 3) {
+				tabText = "答主";
+				NavTitle = "答主的主页";
+				NavLeft = "返回";
+			} else if (this.state.flag == 4) {
+				tabText = "我答";
+				NavTitle = "我答";
+				NavLeft = "返回";
+			} else if (this.state.flag == 5) {
+				tabText = "录音";
+				NavTitle = "我答";
+				NavLeft = "返回";
+			}
 		}
 		
 	    return (
@@ -137,7 +177,7 @@ let Main = React.createClass({
 			        	});
 			        }}
 	        	>
-	        		{this.renderTabContent('我的')}
+	        		{this.renderTabContent(tabText)}
 	        	</TabBar.Item>
 	        </TabBar>
 	      </div>

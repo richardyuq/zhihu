@@ -7,7 +7,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 let index = -1;
-const NUM_ROWS = 20;
+const NUM_ROWS = 3;
 let pageIndex = 0;
 
 module.exports = {
@@ -59,8 +59,18 @@ module.exports = {
 		return null;
 	},
 	
-	getContent() {
+	/**
+	 * not implemented
+	 */
+	getFooter(data) {
+		return null;
+	},
+	
+	getContent(key) {
+		let refName = key ? ('mainList-' + key) : 'mainList';
+		//not implemented
 		let data = this.getData();
+		
 		const separator = (sectionID, rowID) => (
 			<div key={`${sectionID}-${rowID}`} style={{
 			    backgroundColor: '#F5F5F9',
@@ -70,17 +80,22 @@ module.exports = {
 			  }}
 			/>
 	    );
+		
+		/**
+		 * not implemented
+		 */
 		let row = this.getRowRender(data);
 		let header = this.getHeader(data);
+		let footer = this.getFooter(data);
 		return (
 			<div style={{ backgroundColor: 'white', height: '100%', textAlign: 'center' }}>
 				{header}
-				<ListView ref="mainList"
+				<ListView ref={refName}
 					dataSource={this.state.dataSource}
-		        	renderFooter={() => 
+		        	renderFooter={footer || (() => 
 		        	<div style={{ padding: 30, textAlign: 'center' }}>
 		        		{this.state.isLoading ? '加载中...' : '加载完毕'}
-		        	</div>}
+		        	</div>)}
 		        	renderRow={row}
 		        	renderSeparator={separator}
 		        	className="am-list"

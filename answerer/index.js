@@ -17,7 +17,7 @@ const data = {
     des2: '《大学说》主持人，在读研究生还没读完万卷书，梦想行变万里路，有点情怀的90后，欢迎向..'
 }
 
-let My = React.createClass({
+let Main = React.createClass({
 	
 	propTypes: {
     	entry: React.PropTypes.object.isRequired,
@@ -70,6 +70,6 @@ let My = React.createClass({
 	}
 });
 
-My = createForm()(My);
+Main = createForm()(Main);
 
-module.exports = My;
+module.exports = Main;
