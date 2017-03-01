@@ -26,7 +26,7 @@ const data = [
 	{
 		title: '最近《中国诗词大会》第二季吸引了不少人的眼球，为什么一档背诵诗词的节目能如此火爆呢？',
 		len: '56"',
-		des: '回答价值28元，188人听过，153人觉得有用',
+		des: '188人听过，153人觉得有用',
 		answerer: {
 			name: '康震',
 			icon: 'http://7xoh8w.com1.z0.glb.clouddn.com/home_list_portrait.png',
@@ -133,6 +133,8 @@ module.exports = React.createClass({
 		    		</div>
 		    	);
 		    };
+		};
+		this.onEndReached = (event) => {
 		};
 		return this.getContent();
 	}

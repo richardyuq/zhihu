@@ -69,10 +69,6 @@ let Going = React.createClass({
 		};
 		this.onEndReached = (event) => {
 		};
-		this.getFooter = (data) => {
-			return () => 
-			<div></div>;
-		}
 		return this.getContent('going');
 	}
 });
@@ -110,10 +106,6 @@ let Already = React.createClass({
 		};
 		this.onEndReached = (event) => {
 		};
-		this.getFooter = (data) => {
-			return () => 
-			<div></div>;
-		}
 		return this.getContent('already');
 	}
 });

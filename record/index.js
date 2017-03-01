@@ -31,6 +31,12 @@ let timer = function() {
 	}
 }
 
+let resultString = null,winTimer = null;
+
+window.stopRecordingCallback = function(str) {
+	resultString = str;
+}
+
 module.exports = React.createClass({
 	
 	propTypes: {
@@ -48,37 +54,51 @@ module.exports = React.createClass({
 		};
 	},
 	
-	onAction() {
+	recordStart() {
+		//native api
+		RongShang.startRecording();
+		winTimer && window.clearInterval(winTimer);
+		let t = new timer();
+		this.setState({
+			icon : 'http://7xoh8w.com1.z0.glb.clouddn.com/record_stop.png',
+			time: t.show(),
+			info1Display: 'none',
+			info2Display: 'block',
+			info3Display: 'none',
+			actionInfoDisplay: 'none'
+		});
+		winTimer = setInterval(() => {
+			t.add();
+			this.setState({
+				time: t.show()
+			});
+		},1000);
+	},
+	
+	recordStop() {
+		//native api
+		RongShang.stopRecording();
+		this.setState({
+			icon : 'http://7xoh8w.com1.z0.glb.clouddn.com/record_play.png',
+			time: "0:00",
+			info1Display: 'none',
+			info2Display: 'none',
+			info3Display: 'block',
+			actionInfoDisplay: 'block'
+		});
+		window.clearInterval(winTimer);
+	},
+	
+	onAction(key) {
 		let entry = this.props.entry;
 		return (event) => {
 			var src = event.target.src;
-			if (src.indexOf('start') > 0) { //press start
-				let t = new timer();
-				this.setState({
-					icon : 'http://7xoh8w.com1.z0.glb.clouddn.com/record_stop.png',
-					time: t.show(),
-					info1Display: 'none',
-					info2Display: 'block',
-					info3Display: 'none',
-					actionInfoDisplay: 'none'
-				});
-				setInterval(() => {
-					t.add();
-					this.setState({
-						time: t.show()
-					});
-				},1000);
+			if (key || src.indexOf('start') > 0) { //press start
+				this.recordStart();
 			} else if (src.indexOf('stop') > 0) { //press stop
-				this.setState({
-					icon : 'http://7xoh8w.com1.z0.glb.clouddn.com/record_play.png',
-					time: "0:00",
-					info1Display: 'none',
-					info2Display: 'none',
-					info3Display: 'block',
-					actionInfoDisplay: 'block'
-				});
+				this.recordStop();
 			} else { //press play
-				//play
+				RongShang.replayRecording();
 			}
 		}
 	},
@@ -102,7 +122,7 @@ module.exports = React.createClass({
 				</div>
 				<div className="action" style={{height: '100px'}}>
 					<Flex justify="center" align="start" wrap="wrap">
-						<div style={{padding: padding,display:this.state.actionInfoDisplay}}>重录</div>
+						<div onClick={this.onAction('reload')} style={{padding: padding,display:this.state.actionInfoDisplay}}>重录</div>
 						<div style={{padding: '0'}}>
 							<img onClick={this.onAction()} src={this.state.icon}/>
 						</div>

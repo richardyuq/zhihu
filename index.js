@@ -119,6 +119,7 @@ let Main = React.createClass({
 		
 	    return (
 	      <div>
+	      	<div style={{height:'8'}}></div>
 			<NavBar leftContent={NavLeft} mode="light" onLeftClick={this.onClickNarLeft()}>{NavTitle}</NavBar>
 			<TabBar
 	        	unselectedTintColor="#949494"

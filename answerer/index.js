@@ -45,7 +45,7 @@ let Main = React.createClass({
 							<div style={{clear:'both'}}></div>
 							<span className="item" style={{ color:'rgb(185,185,185)',fontSize:'x-small' }}>{data.des}</span>
 							<div style={{clear:'both'}}></div>
-							<span className="item" style={{ color:'rgb(185,185,185)',fontSize:'x-small',width:'220px', lineHeight:'24px' }}>{data.des2}</span>
+							<span className="item" style={{ color:'rgb(185,185,185)',fontSize:'x-small',width:'200px', lineHeight:'24px' }}>{data.des2}</span>
 						</div>
 						<div style={{clear:'both'}}></div>
 	        		</p>

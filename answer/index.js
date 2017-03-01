@@ -88,7 +88,7 @@ module.exports = React.createClass({
 						</div>
 						<div style={{clear:'both'}}></div>
 					</p>
-					<p className="float-line" style={{ marginTop:'.2rem',fontSize:'large', paddingLeft:'1.3rem' }}>
+					<p className="float-line" style={{ marginTop:'.2rem',fontSize:'large', paddingLeft:'1.1rem' }}>
 						<img className="item" src="http://7xoh8w.com1.z0.glb.clouddn.com/home_list_listen.png" width="230px" height="48px"/>
     					<span className="item len">{data.len}</span>
     					<img src="http://7xoh8w.com1.z0.glb.clouddn.com/home_list_useful.png" width="36px" height="36px" className="item" style={{ paddingTop: '0.1rem' }}/>
@@ -139,6 +139,8 @@ module.exports = React.createClass({
 		    	);
 		    };
 		};
+		this.onEndReached = (event) => {
+		}; 					
 		return this.getContent();
 	}
 });

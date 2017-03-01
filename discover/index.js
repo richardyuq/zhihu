@@ -61,7 +61,7 @@ module.exports = React.createClass({
 	
 	render() {
 		this.getHeader = (data) => {
-			const itemPadding = '0.36rem 0.41rem';
+			const itemPadding = '0.28rem 0.31rem';
 			const itemStyle = { padding: itemPadding,borderTop: '1px solid rgb(213,213,213)',borderRight: '1px solid rgb(213,213,213)',borderBottom: '1px solid rgb(213,213,213)'},
 				itemStyle2 = { padding: itemPadding,borderTop: '1px solid rgb(213,213,213)',borderRight: '0px solid rgb(213,213,213)',borderBottom: '1px solid rgb(213,213,213)'},
 				itemStyle3 = { padding: itemPadding,borderRight: '1px solid rgb(213,213,213)',borderBottom: '0px solid rgb(213,213,213)'},
@@ -145,6 +145,8 @@ module.exports = React.createClass({
 		    	);
 		    };
 		};
+		this.onEndReached = (event) => {
+		};						
 		return this.getContent();
 	}
 });
