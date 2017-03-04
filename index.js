@@ -12,6 +12,10 @@ import My from './my/index.js';
 import Auth from './my/authForm.js';
 import MyAsks from './my/myAsks.js';
 import MyAnsweres from './my/myAnsweres.js';
+import MyListens from './my/myListens.js';
+import MyConfigs from './my/myConfigs.js';
+import MyServices from './my/myServices.js';
+import About from './about/index.js';
 import Record from './Record/index.js';
 
 window.audio = null;
@@ -52,6 +56,14 @@ let Main = React.createClass({
 			return <MyAnsweres ref="myAnsweres" entry={this}/>;
 		} else if (tabText == '录音') {
 			return <Record ref="record" entry={this}/>;
+		} else if (tabText == '我听') {
+			return <MyListens ref="myListens" entry={this}/>;
+		} else if (tabText == '设置') {
+			return <MyConfigs ref="myConfigs" entry={this}/>;
+		} else if (tabText == '客服') {
+			return <MyServices ref="myServices" entry={this}/>;
+		} else if (tabText == '关于') {
+			return <About ref="about" entry={this}/>;
 		} else {
 			// nothing
 		}	 	
@@ -84,6 +96,8 @@ let Main = React.createClass({
 				tabText = "答主";
 				NavTitle = "答主的主页";
 				NavLeft = "返回";
+			} else {
+				//nothing
 			}
 		} else if (this.state.selectedTab === 'redTab') {
 			if (this.state.flag == 0) {
@@ -93,6 +107,8 @@ let Main = React.createClass({
 				tabText = "答主";
 				NavTitle = "答主的主页";
 				NavLeft = "返回";
+			} else {
+				//nothing
 			}
 		} else {
 			if (this.state.flag == 0) {
@@ -118,6 +134,24 @@ let Main = React.createClass({
 				tabText = "录音";
 				NavTitle = "我答";
 				NavLeft = "返回";
+			} else if (this.state.flag == 6) {
+				tabText = "我听";
+				NavTitle = "我听";
+				NavLeft = "返回";
+			} else if (this.state.flag == 7) {
+				tabText = "设置";
+				NavTitle = "设置";
+				NavLeft = "返回";
+			} else if (this.state.flag == 8) {
+				tabText = "客服";
+				NavTitle = "客服";
+				NavLeft = "返回";
+			} else if (this.state.flag == 9) {
+				tabText = "关于";
+				NavTitle = "关于";
+				NavLeft = "返回";
+			} else {
+				//nothing
 			}
 		}
 		
@@ -142,10 +176,6 @@ let Main = React.createClass({
 	        				selectedTab: 'blueTab',
 	        				flag: 0
 	        			});
-	        			setTimeout(() => {
-	        				this.refs['question'] && this.refs['question'].refs["mainList"].refs["listview"].scrollTo(0,0);
-	        				this.refs['answer'] && this.refs['answer'].refs["mainList"].refs["listview"].scrollTo(0,0);
-	        			}, 1000);
 	        		}}
 	        	>
 	        		{this.renderTabContent(tabText)}
@@ -161,10 +191,6 @@ let Main = React.createClass({
 		        			selectedTab: 'redTab',
 		        			flag: 0
 		        		});
-		        		setTimeout(() => {
-		        			this.refs['discover'] && this.refs['discover'].refs["mainList"].refs["listview"].scrollTo(0,0);
-		        			this.refs['answer'] && this.refs['answer'].refs["mainList"].refs["listview"].scrollTo(0,0);
-		        		}, 1000);
 		        	}}
 	        	>
 	        		{this.renderTabContent(tabText)}

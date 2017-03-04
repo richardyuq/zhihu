@@ -20,5 +20,12 @@ module.exports =
 			des: '帮你当好自己的CEO',
 			des2: '781个回答，89435人收听',
 			icon: 'http://112.74.50.192/static/answerer_portrait3.png'
+		},
+		{
+			name: "小明同学",
+			title: "小明同学的title",
+			des: '小明同学的描述',
+			des2: '781个回答，89435人收听',
+			icon: 'http://112.74.50.192/static/my_portrait.png'
 		}
 ]

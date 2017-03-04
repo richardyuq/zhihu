@@ -1,5 +1,5 @@
 /**
- * Class Entry for zhihu
+ * Class About for zhihu
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -9,7 +9,7 @@ import "./about.css";
 
 const Item = List.Item;
 
-let Main = React.createClass({
+module.exports = React.createClass({
 	
 	getInitialState() {
 		return {
@@ -25,8 +25,6 @@ let Main = React.createClass({
 				);
 	    return (
 		    <div>
-		      	<div style={{ height: 8 }} />
-				<NavBar leftContent="返回" mode="light" onLeftClick={() => console.log('onLeftClick')}>关于我们</NavBar>
 				<div className="flex-container">
 					<Flex justify="center">
 			          {PlaceHolder('inline',<img src='http://7xoh8w.com1.z0.glb.clouddn.com/zhuhu-logo.png'/>)}
@@ -46,5 +44,3 @@ let Main = React.createClass({
 	    );
 	}
 });
-
-ReactDOM.render(<Main />, document.getElementById('app'));

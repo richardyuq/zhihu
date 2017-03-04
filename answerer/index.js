@@ -79,7 +79,7 @@ let Main = React.createClass({
 			        </div>
 		        </List>
 				<Modal
-					title="这是 title"
+					title="警 告"
 					transparent
 					maskClosable={false}
 					visible={this.state.warnShow}

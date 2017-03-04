@@ -41,7 +41,7 @@ module.exports = React.createClass({
 	onAsk() {
 		let entry = this.props.entry;
 		return (event) => {
-			entry.setFlag(3);
+			entry.setFlag(3,{index: 3});
 		}
 	},
 	
