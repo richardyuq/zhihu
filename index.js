@@ -17,6 +17,8 @@ import MyConfigs from './my/myConfigs.js';
 import MyServices from './my/myServices.js';
 import About from './about/index.js';
 import Record from './Record/index.js';
+import Yuewen from './yuewen/index.js';
+import Search from './yuewen/search.js';
 
 window.audio = null;
 
@@ -64,6 +66,10 @@ let Main = React.createClass({
 			return <MyServices ref="myServices" entry={this}/>;
 		} else if (tabText == '关于') {
 			return <About ref="about" entry={this}/>;
+		} else if (tabText == '悦问') {
+			return <Yuewen ref="yuewen" entry={this}/>;
+		} else if (tabText == '搜索') {
+			return <Search ref="search" entry={this}/>;
 		} else {
 			// nothing
 		}	 	
@@ -72,12 +78,12 @@ let Main = React.createClass({
 	onClickNarLeft() {
 		return (event) => {
 			var f = this.state.flag,tab = this.state.selectedTab;
-			if (tab !== 'yellowTab') {
+			if (tab == 'greenTab' || tab == 'yellowTab') {
+				this.setFlag(0);
+			} else {
 				if (f > 0) {
 					this.setFlag(--f,this.state.param);
 				}
-			} else {
-				this.setFlag(0);
 			}
 		}
 	},
@@ -110,7 +116,22 @@ let Main = React.createClass({
 			} else {
 				//nothing
 			}
-		} else {
+		} else if (this.state.selectedTab === 'greenTab') {
+			if (this.state.flag == 0) {
+				tabText = "悦问";
+				NavTitle = "悦问";
+			} else if (this.state.flag == 1) {
+				tabText = "答主";
+				NavTitle = "答主的主页";
+				NavLeft = "返回";
+			} else if (this.state.flag == 2) {
+				tabText = "搜索";
+				NavTitle = "搜索";
+				NavLeft = "返回";
+			} else {
+				//nothing
+			}
+		} else if (this.state.selectedTab === 'yellowTab') {
 			if (this.state.flag == 0) {
 				tabText = "我的";
 				NavTitle = "我的";
@@ -154,8 +175,8 @@ let Main = React.createClass({
 				//nothing
 			}
 		}
-		
-	    return (
+
+		return (
 	      <div>
 	      	<div style={{height:'8'}}></div>
 			<NavBar leftContent={NavLeft} mode="light" onLeftClick={this.onClickNarLeft()}>{NavTitle}</NavBar>
@@ -165,12 +186,11 @@ let Main = React.createClass({
 	        	barTintColor="white"
 			>
 	        	<TabBar.Item
-	        		title="首页"
 	        		key="首页"
-	        		icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/UNQhIatjpNZHjVf.png' }}
-	        		selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/HLkBvJOKnmOfBPO.png' }}
+	        		icon={ <div><img src="http://112.74.50.192/static/tab_home_gray.png" style={{ width:"0.92rem",height:"0.92rem" }}/></div> }
+	        		selectedIcon={ <div><img src="http://112.74.50.192/static/tab_home_light.png" style={{ width:"0.92rem",height:"0.92rem" }}/></div> }
+	        		iconStyle={{ width:'98px',height:'98px' }}
 	        		selected={this.state.selectedTab === 'blueTab'}
-	        		badge={0}
 	        		onPress={() => {
 	        			this.setState({
 	        				selectedTab: 'blueTab',
@@ -181,9 +201,8 @@ let Main = React.createClass({
 	        		{this.renderTabContent(tabText)}
 	        	</TabBar.Item>
 	        	<TabBar.Item
-	        		icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/UNQhIatjpNZHjVf.png' }}
-	        		selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/HLkBvJOKnmOfBPO.png' }}
-	        		title="发现"
+	        		icon={ <div><img src="http://112.74.50.192/static/tab_discover_gray.png" style={{ width:"0.92rem",height:"0.92rem" }}/></div> }
+	        		selectedIcon={ <div><img src="http://112.74.50.192/static/tab_discover_light.png" style={{ width:"0.92rem",height:"0.92rem" }}/></div> }
 	        		key="发现"
 	        		selected={this.state.selectedTab === 'redTab'}
 		        	onPress={() => {
@@ -196,9 +215,22 @@ let Main = React.createClass({
 	        		{this.renderTabContent(tabText)}
 	        	</TabBar.Item>
 	        	<TabBar.Item
-	        		icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/cKhfyLTszUeFARPgfokz.png' }}
-	        		selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/bqUXyjiOyKrXRfiIZVsZ.png' }}
-	        		title="我的"
+	        		icon={ <div><img src="http://112.74.50.192/static/tab_yw_gray.png" style={{ width:"0.92rem",height:"0.92rem" }}/></div> }
+	        		selectedIcon={ <div><img src="http://112.74.50.192/static/tab_yw_light.png" style={{ width:"0.92rem",height:"0.92rem" }}/></div> }
+	        		key="悦问"
+	        		selected={this.state.selectedTab === 'greenTab'}
+		        	onPress={() => {
+		        		this.setState({
+		        			selectedTab: 'greenTab',
+		        			flag: 0
+		        		});
+		        	}}
+	        	>
+        			{this.renderTabContent(tabText)}
+        		</TabBar.Item>
+	        	<TabBar.Item
+	        		icon={ <div><img src="http://112.74.50.192/static/tab_my_gray.png" style={{ width:"0.92rem",height:"0.92rem" }}/></div> }
+	        		selectedIcon={ <div><img src="http://112.74.50.192/static/tab_my_light.png" style={{ width:"0.92rem",height:"0.92rem" }}/></div> }
 	        		key="我的"
 	        		selected={this.state.selectedTab === 'yellowTab'}
 			        onPress={() => {

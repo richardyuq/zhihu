@@ -1,5 +1,5 @@
 /**
- * Class My asks
+ * Class My Asks
  * function:
  * 1、My asks question list
  */

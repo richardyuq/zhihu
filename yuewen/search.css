@@ -1,0 +1,22 @@
+.inputItem {
+	width: 5rem;
+	height: 0.55rem;
+	margin-right: 0.36rem;
+	border-radius: 15px;
+}
+
+.btn {
+	color: rgb(0,191,173);
+}
+
+.title {
+	color: rgb(0,191,173);
+}
+
+.word {
+	margin: 0.26rem;
+	text-align: left;
+	border: 1px solid #ccc;
+	border-radius: 15px;
+	padding: 0.2rem;
+}
