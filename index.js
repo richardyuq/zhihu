@@ -14,18 +14,22 @@ import MyAsks from './my/myAsks.js';
 import MyAnsweres from './my/myAnsweres.js';
 import Record from './Record/index.js';
 
+window.audio = null;
+
 let Main = React.createClass({
 	
 	getInitialState() {
 		return {
 			selectedTab: 'blueTab',
-			flag: 0 // level
+			flag: 0,// level
+			param: null
 		}
 	},
 	
-	setFlag(f) {
+	setFlag(f,param) {
 		this.setState({
-			flag : f
+			flag: f,
+			param: param
 		});
 	},
 	
@@ -33,9 +37,9 @@ let Main = React.createClass({
 		if (tabText == '问题') {
 			return <Question ref="question" entry={this}/>;
 		} else if (tabText == '回答') {
-			return <Answer ref="answer" entry={this}/>;
+			return <Answer ref="answer" entry={this} param={this.state.param}/>;
 		} else if (tabText == '答主') {
-			return <Answerer ref="answerer" entry={this}/>;
+			return <Answerer ref="answerer" entry={this} param={this.state.param}/>;
 		} else if (tabText == '发现') {
 			return <Discover ref="discover" entry={this}/>;
 		} else if (tabText == '我的') {
@@ -58,7 +62,7 @@ let Main = React.createClass({
 			var f = this.state.flag,tab = this.state.selectedTab;
 			if (tab !== 'yellowTab') {
 				if (f > 0) {
-					this.setFlag(--f);
+					this.setFlag(--f,this.state.param);
 				}
 			} else {
 				this.setFlag(0);

@@ -10,17 +10,13 @@ import { List, TextareaItem, Button } from 'antd-mobile';
 import { createForm } from 'rc-form';
 
 import "../common/question-row.css";
-
-const data = {
-    name: '薛兆也',
-    des: '52644人收听，401个回答',
-    des2: '《大学说》主持人，在读研究生还没读完万卷书，梦想行变万里路，有点情怀的90后，欢迎向..'
-}
+import data from '../common/data2.js';
 
 let Main = React.createClass({
 	
 	propTypes: {
     	entry: React.PropTypes.object.isRequired,
+    	param: React.PropTypes.object.isRequired
   	},
 	
 	getInitialState() {
@@ -35,17 +31,18 @@ let Main = React.createClass({
 	
 	render() {
 	    const { getFieldProps } = this.props.form;
+	    let param = this.props.param,obj = data[param.index];
 	    return (
 	        <List>
 	        	<div className="row-container" style={{ backgroundColor:'white', borderBottom: '1px solid rgb(213,213,213)' }}>
 	        		<p className="float-line" style={{marginBottom: '0.2rem'}}>
-	        			<img className="item answerer-icon" src="http://7xoh8w.com1.z0.glb.clouddn.com/answerer_portrait.png"/>
+	        			<img className="item answerer-icon" src={obj.icon} width="120px" height="120px"/>
 	        			<div style={{ float:'left',position: 'relative',marginTop: '0.2rem' }}>
-							<span className="item">{data.name}</span>
+							<span className="item">{obj.name}</span>
 							<div style={{clear:'both'}}></div>
-							<span className="item" style={{ color:'rgb(185,185,185)',fontSize:'x-small' }}>{data.des}</span>
+							<span className="item" style={{ color:'rgb(185,185,185)',fontSize:'x-small' }}>{obj.des}</span>
 							<div style={{clear:'both'}}></div>
-							<span className="item" style={{ color:'rgb(185,185,185)',fontSize:'x-small',width:'200px', lineHeight:'24px' }}>{data.des2}</span>
+							<span className="item" style={{ color:'rgb(185,185,185)',fontSize:'x-small',width:'200px', lineHeight:'24px' }}>{obj.des2}</span>
 						</div>
 						<div style={{clear:'both'}}></div>
 	        		</p>

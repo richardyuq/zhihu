@@ -10,30 +10,7 @@ import { Button,Flex } from 'antd-mobile';
 import ListView from '../common/listView.js';
 
 import "../common/question-row.css";
-
-const data = [
-	{
-		name: '南谷',
-		title: '心理咨询师',
-		des: '认知自我，解读心理',
-		des2: '122个回答，58122收听',
-		icon: 'http://7xoh8w.com1.z0.glb.clouddn.com/answerer_portrait.png'
-	},
-	{
-		name: '薛兆也',
-		title: '《大学说》主持人',
-		des: '爱大学爱主持爱生活',
-		des2: '401个回答，52644收听',
-		icon: 'http://7xoh8w.com1.z0.glb.clouddn.com/answerer_portrait.png'
-	},
-	{
-		name: "秦臻",
-		title: "领航众创空间CEO",
-		des: '帮你当好自己的CEO',
-		des2: '781个回答，89435人收听',
-		icon: 'http://7xoh8w.com1.z0.glb.clouddn.com/answerer_portrait.png'
-	}
-];
+import data from '../common/data2.js';
 
 let index = -1;
 
@@ -52,10 +29,27 @@ module.exports = React.createClass({
 		return data;
 	},
 	
-	onAsk() {
+	onAsk(index) {
 		let entry = this.props.entry;
 		return (event) => {
-			entry.setFlag(1);
+			entry.setFlag(1,{ index: index + 1 });
+		}
+	},
+	
+	onSub(){
+		return (event) => {
+			let item = event.target;
+			if (item.tagName != 'SPAN')
+				return;
+			if (item.innerText.indexOf("取消") < 0) {
+				item.parentNode.style.backgroundColor = 'rgb(210,210,210)';
+				item.parentNode.style.color = "#000";
+				item.innerText = "取消订阅";
+			} else {
+				item.parentNode.style.backgroundColor = 'rgb(0,191,173)';
+				item.parentNode.style.color = "white";
+				item.innerText = "订阅";
+			}
 		}
 	},
 	
@@ -124,14 +118,14 @@ module.exports = React.createClass({
 		    			className="row-container" style={{ backgroundColor:'white' }}
 		    		>
 			    		<p className="float-line" style={{marginBottom: '0.2rem'}}>
-			    			<a onClick={this.onAsk()}>
+			    			<a onClick={this.onAsk(index)}>
 		        				<img className="item answerer-icon" src={obj.icon} width="100px" height="100px"/>
 		        			</a>
 		        			<div style={{ float:'left',position: 'relative',marginTop: '0.2rem' }}>
 								<span className="item" style={{fontSize:'larger'}}>
-								<a onClick={this.onAsk()}>{obj.name}</a>
+								<a onClick={this.onAsk(index)}>{obj.name}</a>
 								</span>
-								<Button type="ghost" size="small" inline style={{ float:'right',backgroundColor:'rgb(0,191,173)',borderColor:'rgb(0,191,173)', color: 'white' }}>
+								<Button onClick={this.onSub()} type="ghost" size="small" inline style={{ float:'right',backgroundColor:'rgb(0,191,173)',borderColor:'rgb(0,191,173)', color: 'white' }}>
 				        			订阅
 				        		</Button>
 								<div style={{clear:'both'}}></div>
