@@ -1,11 +1,9 @@
 /**
- * Class Yuewen Index
- * function:
- * 1、My asks question list
+ * Class Yuewen search
+ * 
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button } from 'antd-mobile';
 
 import "./search.css";
 import "../common/question-row.css";

@@ -1,7 +1,6 @@
 /**
  * Class Yuewen Index
- * function:
- * 1、My asks question list
+ * 
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
