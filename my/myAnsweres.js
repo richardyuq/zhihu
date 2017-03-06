@@ -5,21 +5,10 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom'; 
-import ListView from '../common/listView.js';
+import ListView from '../common/listViewAync.js';
 
+import util from '../common/util.js';
 import "../common/question-row.css";
-
-const data = [
-	{
-		title: '我想学日语，请问该如何入门？有什么日语学习的教材推荐吗？'
-	},
-	{
-		title: '孩子要高考了，作为家长应该做好哪些准备？如何缓解孩子的考试紧张心理'
-	},
-	{
-		title: '现在越来越多的人很难读完一本书了，能推荐一本你觉得拿起来就放不下的书吗？'
-	},
-];
 
 let index = -1;
 
@@ -34,14 +23,91 @@ let Going = React.createClass({
 		return this.getContentInitialState();
 	},
 	
-	getData() {
-		return data;
+	componentDidMount() {
+		this.setState({ isLoading: true });
+		util.ajax({
+			url: '/FHADMINM/app/yuewen/getList.do',
+			data: { ASKER: '小明同学',Going: 'yes' },
+			cb: (res) => {
+				this.rData = res.data;
+				this.setState({
+				    dataSource: this.state.dataSource.cloneWithRows(this.rData),
+				    isLoading: false,
+				});
+			}
+		});
 	},
 	
-	onRecord() {
+	onRecord(obj) {
 		let entry = this.props.entry;
 		return (event) => {
-			entry.setFlag(5);
+			entry.setFlag(5,obj);
+		}
+	},
+	
+	render() {
+		this.getRowRender = (data) => {
+			return (rowData, sectionID, rowID) => {
+		    	if (index < 0) {
+		    		index = data.length - 1;
+		    	}
+		    	let obj = data[index--];
+		    	return (
+	    			<div className="row-container"
+		    			key={rowID}
+		    		>
+	    				<p style={{ fontSize:'larger',marginTop: '0.2rem' }}>
+	    					{obj["TITILE"]}
+		    				<br/>
+		    				<a onClick={this.onRecord(obj)}>
+		    					<img src="http://112.74.50.192/static/record_entry.png"/>
+		    				</a>
+	    				</p>
+		    		</div>
+		    	);
+		    };
+		};
+		this.onEndReached = (event) => {
+		};
+		return this.getContent('Going');
+	}
+});
+
+let Already = React.createClass({
+	mixins: [ListView],
+	
+	propTypes: {
+    	entry: React.PropTypes.object.isRequired,
+  	},
+	
+	getInitialState() {
+		return this.getContentInitialState();
+	},
+	
+	componentDidMount() {
+		this.setState({ isLoading: true });
+		util.ajax({
+			url: '/FHADMINM/app/yuewen/getList.do',
+			data: { ASKER: '小明同学',Already: 'yes' },
+			cb: (res) => {
+				this.rData = res.data;
+				this.setState({
+				    dataSource: this.state.dataSource.cloneWithRows(this.rData),
+				    isLoading: false,
+				});
+			}
+		});
+	},
+	
+	onReplay(obj) {
+		return (event) => {
+			util.ajax({
+				url: '/FHADMINM/app/yuewen/getRsById.do',
+				data: obj,
+				cb: (res) => {
+					RongShang.replayURLRecording(res.data);
+				}
+			});
 		}
 	},
 	
@@ -57,49 +123,12 @@ let Going = React.createClass({
 		    			key={rowID}
 		    		>
 	    				<p style={{ fontSize:'larger',marginTop: '0.2rem' }}>
-	    				{obj.title}
-	    				<br/>
-	    				<a onClick={this.onRecord()}>
-	    					<img src="http://7xoh8w.com1.z0.glb.clouddn.com/record_entry.png"/>
-	    				</a>
+	    					{obj["TITILE"]}
+	    					<br/>
+		    				<a onClick={this.onReplay(obj)}>
+		    					<img src="http://112.74.50.192/static/replay_entry.png"/>
+		    				</a>
 	    				</p>
-		    		</div>
-		    	);
-		    };
-		};
-		this.onEndReached = (event) => {
-		};
-		return this.getContent('going');
-	}
-});
-
-let Already = React.createClass({
-	mixins: [ListView],
-	
-	propTypes: {
-    	entry: React.PropTypes.object.isRequired,
-  	},
-	
-	getInitialState() {
-		return this.getContentInitialState();
-	},
-	
-	getData() {
-		return data;
-	},
-	
-	render() {
-		this.getRowRender = (data) => {
-			return (rowData, sectionID, rowID) => {
-		    	if (index < 0) {
-		    		index = data.length - 1;
-		    	}
-		    	const obj = data[index--];
-		    	return (
-	    			<div className="row-container"
-		    			key={rowID}
-		    		>
-	    				<p style={{ fontSize:'larger',marginTop: '0.2rem' }}>{obj.title}</p>
 		    		</div>
 		    	);
 		    };

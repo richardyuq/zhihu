@@ -5,21 +5,10 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom'; 
-import ListView from '../common/listView.js';
+import ListView from '../common/listViewAync.js';
 
+import util from '../common/util.js';
 import "../common/question-row.css";
-
-const data = [
-	{
-		title: '我想学日语，请问该如何入门？有什么日语学习的教材推荐吗？'
-	},
-	{
-		title: '孩子要高考了，作为家长应该做好哪些准备？如何缓解孩子的考试紧张心理'
-	},
-	{
-		title: '现在越来越多的人很难读完一本书了，能推荐一本你觉得拿起来就放不下的书吗？'
-	},
-];
 
 let index = -1;
 
@@ -34,8 +23,19 @@ module.exports = React.createClass({
 		return this.getContentInitialState();
 	},
 	
-	getData() {
-		return data;
+	componentDidMount() {
+		this.setState({ isLoading: true });
+		util.ajax({
+			url: '/FHADMINM/app/yuewen/getList.do',
+			data: { ASKER:'小明同学' },
+			cb: (res) => {
+				this.rData = res.data;
+				this.setState({
+				    dataSource: this.state.dataSource.cloneWithRows(this.rData),
+				    isLoading: false,
+				});
+			}
+		});
 	},
 	
 	onAsk() {
@@ -56,7 +56,7 @@ module.exports = React.createClass({
 	    			<div className="row-container"
 		    			key={rowID}
 		    		>
-	    				<p style={{ fontSize:'larger',marginTop: '0.2rem' }}>{obj.title}</p>
+	    				<p style={{ fontSize:'larger',marginTop: '0.2rem' }}>{obj["TITILE"]}</p>
 		    		</div>
 		    	);
 		    };

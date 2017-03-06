@@ -57,7 +57,7 @@ let Main = React.createClass({
 		} else if (tabText == '我答') {
 			return <MyAnsweres ref="myAnsweres" entry={this}/>;
 		} else if (tabText == '录音') {
-			return <Record ref="record" entry={this}/>;
+			return <Record ref="record" entry={this} param={this.state.param}/>;
 		} else if (tabText == '我听') {
 			return <MyListens ref="myListens" entry={this}/>;
 		} else if (tabText == '设置') {

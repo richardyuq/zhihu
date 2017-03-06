@@ -6,9 +6,10 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { List, TextareaItem, Button, Modal } from 'antd-mobile';
+import { List, TextareaItem, Button, Modal, Toast } from 'antd-mobile';
 import { createForm } from 'rc-form';
 
+import util from '../common/util.js';
 import "../common/question-row.css";
 import data from '../common/data2.js';
 
@@ -34,13 +35,30 @@ let Main = React.createClass({
 			this.setState({
 				warnShow: true
 			});
-		};
+		}
 	},
 	
 	onClose() {
 		this.setState({
 			warnShow: false
 		});
+	},
+	
+	onAsk() {
+		return (event) => {
+			var fv = this.props.form.getFieldsValue();
+			util.ajax({
+				url: '/FHADMINM/app/yuewen/save.do',
+				data: { 
+					TITILE: fv["TITILE"],
+					ASKER: '小明同学',
+					ANSWERER: '小明同学'
+				},
+				cb: (res) => {
+					Toast.success('保存成功');
+				}
+			});
+		}
 	},
 	
 	render() {
@@ -66,14 +84,14 @@ let Main = React.createClass({
 	    				<img onClick={this.showWarning()} src="http://7xoh8w.com1.z0.glb.clouddn.com/answer_info.gif" width="80px" height="24px"/> 
 	    			</div>
 		        	<TextareaItem
-		        		{...getFieldProps('question')}
+		        		{...getFieldProps('TITILE')}
 				        placeholder="输入你的问题，回答被其他人收听后，你将分成收入的一半。若超过72小时未被回答，费用自动退回。"
 				        count={200}
 				        rows={5}
 				        autoFocus autoHeight
 			        />
 				    <div style={{ textAlign: 'center' }}>
-				        <Button type="primary" style={{ backgroundColor: 'rgb(0,191,173)', width: '100px', margin: '16px auto', padding: '0 16px' }}>
+				        <Button type="primary" onClick={this.onAsk()} style={{ backgroundColor: 'rgb(0,191,173)', width: '100px', margin: '16px auto', padding: '0 16px' }}>
 				        	提问
 				        </Button>
 			        </div>

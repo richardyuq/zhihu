@@ -6,8 +6,9 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Flex } from 'antd-mobile';
+import { Flex, Toast } from 'antd-mobile';
 
+import util from '../common/util.js';
 import "./record.css";
 
 let timer = function() {
@@ -31,16 +32,17 @@ let timer = function() {
 	}
 }
 
-let resultString = null,winTimer = null;
+let recordingString = null,winTimer = null;
 
 window.stopRecordingCallback = function(str) {
-	resultString = str;
+	recordingString = str;
 }
 
 module.exports = React.createClass({
 	
 	propTypes: {
     	entry: React.PropTypes.object.isRequired,
+    	param: React.PropTypes.object.isRequired
   	},
   	
   	getInitialState() {
@@ -89,12 +91,28 @@ module.exports = React.createClass({
 		window.clearInterval(winTimer);
 	},
 	
+	send() {
+		let obj = this.props.param;
+		obj["recordingString"] = recordingString;
+		util.ajax({
+			url: '/FHADMINM/app/yuewen/edit.do',
+			data: obj,
+			cb: (res) => {
+				Toast.success('保存成功');
+			}
+		});
+	},
+	
 	onAction(key) {
 		let entry = this.props.entry;
 		return (event) => {
-			var src = event.target.src;
-			if (key || src.indexOf('start') > 0) { //press start
+			var target = event.target,src = "";
+			if (target.tagName == "IMG")
+				src = target.src;
+			if (key == 'reload' || src.indexOf('start') > 0) { //press start
 				this.recordStart();
+			} else if (key == 'send') { //send
+				this.send();
 			} else if (src.indexOf('stop') > 0) { //press stop
 				this.recordStop();
 			} else { //press play
@@ -105,10 +123,11 @@ module.exports = React.createClass({
 	
 	render() {
 		const padding = "0.6rem";
+		let obj = this.props.param;
 		return (
 			<div className="container">	
-				<div className="question-title">小明同学的提问</div>
-				<div className="question-body">人们对软件架构师有哪些常见的误解？</div>
+				<div className="question-title">{obj["ASKER"]}的提问</div>
+				<div className="question-body">{obj["TITILE"]}</div>
 				<div className="info">
 					<div className="info1" style={{display:this.state.info1Display}}>录音最长2分钟<br/>点击按钮开始录音</div>
 					<div className="info2" style={{display:this.state.info2Display}}>
@@ -126,7 +145,7 @@ module.exports = React.createClass({
 						<div style={{padding: '0'}}>
 							<img onClick={this.onAction()} src={this.state.icon}/>
 						</div>
-						<div style={{padding: padding,display:this.state.actionInfoDisplay,color:'blue'}}>确认发送？</div>
+						<div onClick={this.onAction('send')} style={{padding: padding,display:this.state.actionInfoDisplay,color:'blue'}}>确认发送？</div>
 					</Flex>
 				</div>
 			</div>	
