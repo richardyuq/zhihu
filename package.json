@@ -4,7 +4,8 @@
   "private": true,
   "entry": {
     "index": "./index.js",
-    "login": "./login/index.js"
+    "login": "./login/index.js",
+    "register": "./register/index.js"
   },
   "scripts": {
     "build": "atool-build",

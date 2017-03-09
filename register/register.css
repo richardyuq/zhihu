@@ -1,0 +1,55 @@
+.bg {
+	background-image: url('http://112.74.50.192/static/login_bg.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 13rem;
+	text-align: center;
+}
+
+.login-box {
+    height: 5.5rem;
+    width: 5rem;
+    background-color: #fff;
+    border: .04rem solid #00bfad;
+    position: absolute;
+    top: 3rem;
+    left: 1.2rem;
+}
+
+.title {
+	height: 0.6rem;
+	background-color: rgb(247,251,251);
+	font-size: larger;
+	padding-top: 0.1rem;
+}
+
+#loginName,#passWord,#passWord2 {
+    width: 4.5rem;
+    height: 0.5rem;
+    border: 1px solid #eee;
+    margin: 0.2rem;
+}
+
+.area2 {
+	height: 0.5rem;
+	margin: 0.2rem;
+}
+
+#verifyCode {
+	float: left;
+	width: 3rem;
+	height: 0.5rem;
+    border: 1px solid #eee;
+}
+
+#codeImg {
+	display: block;
+	float: left;
+}
+
+#btn {
+	width: 4.6rem;
+	height: 0.6rem;
+    border: 1px solid #eee;
+    background-color: #00bfad;
+}

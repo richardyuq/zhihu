@@ -60,7 +60,7 @@ let Going = React.createClass({
 	    					{obj["TITILE"]}
 		    				<br/>
 		    				<a onClick={this.onRecord(obj)}>
-		    					<img src="http://112.74.50.192/static/record_entry.png"/>
+		    					<img src="http://112.74.50.192/static/record_entry.png" width="160px" height="60px"/>
 		    				</a>
 	    				</p>
 		    		</div>
@@ -126,7 +126,7 @@ let Already = React.createClass({
 	    					{obj["TITILE"]}
 	    					<br/>
 		    				<a onClick={this.onReplay(obj)}>
-		    					<img src="http://112.74.50.192/static/replay_entry.png"/>
+		    					<img src="http://112.74.50.192/static/replay_entry.png" width="160px" height="60px"/>
 		    				</a>
 	    				</p>
 		    		</div>

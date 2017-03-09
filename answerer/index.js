@@ -47,6 +47,8 @@ let Main = React.createClass({
 	onAsk() {
 		return (event) => {
 			var fv = this.props.form.getFieldsValue();
+			if (!fv["TITILE"])
+				return;
 			util.ajax({
 				url: '/FHADMINM/app/yuewen/save.do',
 				data: { 
