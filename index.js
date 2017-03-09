@@ -19,6 +19,7 @@ import About from './about/index.js';
 import Record from './Record/index.js';
 import Yuewen from './yuewen/index.js';
 import Search from './yuewen/search.js';
+import MyFeedbacks from './my/myFeedbacks.js';
 
 window.audio = null;
 
@@ -70,6 +71,8 @@ let Main = React.createClass({
 			return <Yuewen ref="yuewen" entry={this}/>;
 		} else if (tabText == '搜索') {
 			return <Search ref="search" entry={this}/>;
+		} else if (tabText == '反馈') {
+			return <MyFeedbacks ref="myFeedbacks" entry={this}/>;
 		} else {
 			// nothing
 		}	 	
@@ -170,6 +173,10 @@ let Main = React.createClass({
 			} else if (this.state.flag == 9) {
 				tabText = "关于";
 				NavTitle = "关于";
+				NavLeft = "返回";
+			} else if (this.state.flag == 10) {
+				tabText = "反馈";
+				NavTitle = "反馈";
 				NavLeft = "返回";
 			} else {
 				//nothing
