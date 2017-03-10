@@ -36,6 +36,7 @@
     "rc-form": "1.x",
     "react": "15.3.x",
     "react-dom": "15.3.x",
-    "jquery-ajax": "2.1.4"
+    "jquery-ajax": "2.1.4",
+    "cookie-browser": "1.0.0"
   }
 }

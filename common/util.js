@@ -1,4 +1,5 @@
 import $ from 'jquery-ajax';
+import $cookie from 'cookie-browser';
 
 module.exports = {
 	ajax: function(obj) {
@@ -26,5 +27,11 @@ module.exports = {
 	            }
 	        }
 	    });
+	},
+	setCookie: function(k,v) {
+		$cookie.set(k, v);
+	},
+	getCookie: function(k) {
+		return $cookie.get(k);
 	}
 }

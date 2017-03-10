@@ -18,15 +18,17 @@ let Main = React.createClass({
 	
 	login() {
 		return (event) => {
+			let u = document.getElementById("loginName").value;
 			util.ajax({
-				url: '/FHADMINM//app/yuewen/member/login.do',
+				url: '/FHADMINM/app/yuewen/member/login.do',
 				data: {
-					'USERNAME': document.getElementById("loginName").value,
+					'USERNAME': u,
 					'PASSWORD': document.getElementById("passWord").value,
 				},
 				cb: (res) => {
 					Toast.success('登录成功');
-					//window.location = '/zhihu.html';
+					util.setCookie('loginId', u);
+					window.location = '/zhihu.html';
 				}
 			});
 		};

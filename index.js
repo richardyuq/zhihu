@@ -3,7 +3,10 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import { NavBar, TabBar, Icon } from 'antd-mobile';
+import util from './common/util.js';
+
 import Question from './question/index.js';
 import Answer from './answer/index.js';
 import Answerer from './answerer/index.js';
@@ -255,4 +258,8 @@ let Main = React.createClass({
 	}
 });
 
-ReactDOM.render(<Main />, document.getElementById('app'));
+if (util.getCookie('loginId') == null) {
+	location = 'login.html';
+} else {
+	ReactDOM.render(<Main />, document.getElementById('app')); 
+}

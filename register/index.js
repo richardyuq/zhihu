@@ -25,7 +25,7 @@ let Main = React.createClass({
 	register() {
 		return (event) => {
 			util.ajax({
-				url: '/FHADMINM//app/yuewen/member/register.do',
+				url: '/FHADMINM/app/yuewen/member/register.do',
 				data: {
 					'USERNAME': document.getElementById("loginName").value,
 					'PASSWORD': document.getElementById("passWord").value,
