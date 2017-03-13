@@ -197,8 +197,8 @@ let Main = React.createClass({
 			>
 	        	<TabBar.Item
 	        		key="首页"
-	        		icon={ <div><img src="http://112.74.50.192/static/tab_home_gray.png" style={{ width:"0.92rem",height:"0.92rem" }}/></div> }
-	        		selectedIcon={ <div><img src="http://112.74.50.192/static/tab_home_light.png" style={{ width:"0.92rem",height:"0.92rem" }}/></div> }
+	        		icon={ <div><img src="http://112.74.50.192/static/tab_home_gray.png" style={{ width:"0.86rem",height:"0.86rem" }}/></div> }
+	        		selectedIcon={ <div><img src="http://112.74.50.192/static/tab_home_light.png" style={{ width:"0.86rem",height:"0.86rem" }}/></div> }
 	        		iconStyle={{ width:'98px',height:'98px' }}
 	        		selected={this.state.selectedTab === 'blueTab'}
 	        		onPress={() => {
@@ -211,8 +211,8 @@ let Main = React.createClass({
 	        		{this.renderTabContent(tabText)}
 	        	</TabBar.Item>
 	        	<TabBar.Item
-	        		icon={ <div><img src="http://112.74.50.192/static/tab_discover_gray.png" style={{ width:"0.92rem",height:"0.92rem" }}/></div> }
-	        		selectedIcon={ <div><img src="http://112.74.50.192/static/tab_discover_light.png" style={{ width:"0.92rem",height:"0.92rem" }}/></div> }
+	        		icon={ <div><img src="http://112.74.50.192/static/tab_discover_gray.png" style={{ width:"0.86rem",height:"0.86rem" }}/></div> }
+	        		selectedIcon={ <div><img src="http://112.74.50.192/static/tab_discover_light.png" style={{ width:"0.86rem",height:"0.86rem" }}/></div> }
 	        		key="发现"
 	        		selected={this.state.selectedTab === 'redTab'}
 		        	onPress={() => {
@@ -225,8 +225,8 @@ let Main = React.createClass({
 	        		{this.renderTabContent(tabText)}
 	        	</TabBar.Item>
 	        	<TabBar.Item
-	        		icon={ <div><img src="http://112.74.50.192/static/tab_yw_gray.png" style={{ width:"0.92rem",height:"0.92rem" }}/></div> }
-	        		selectedIcon={ <div><img src="http://112.74.50.192/static/tab_yw_light.png" style={{ width:"0.92rem",height:"0.92rem" }}/></div> }
+	        		icon={ <div><img src="http://112.74.50.192/static/tab_yw_gray.png" style={{ width:"0.86rem",height:"0.86rem" }}/></div> }
+	        		selectedIcon={ <div><img src="http://112.74.50.192/static/tab_yw_light.png" style={{ width:"0.86rem",height:"0.86rem" }}/></div> }
 	        		key="悦问"
 	        		selected={this.state.selectedTab === 'greenTab'}
 		        	onPress={() => {
@@ -239,8 +239,8 @@ let Main = React.createClass({
         			{this.renderTabContent(tabText)}
         		</TabBar.Item>
 	        	<TabBar.Item
-	        		icon={ <div><img src="http://112.74.50.192/static/tab_my_gray.png" style={{ width:"0.92rem",height:"0.92rem" }}/></div> }
-	        		selectedIcon={ <div><img src="http://112.74.50.192/static/tab_my_light.png" style={{ width:"0.92rem",height:"0.92rem" }}/></div> }
+	        		icon={ <div><img src="http://112.74.50.192/static/tab_my_gray.png" style={{ width:"0.86rem",height:"0.86rem" }}/></div> }
+	        		selectedIcon={ <div><img src="http://112.74.50.192/static/tab_my_light.png" style={{ width:"0.86rem",height:"0.86rem" }}/></div> }
 	        		key="我的"
 	        		selected={this.state.selectedTab === 'yellowTab'}
 			        onPress={() => {

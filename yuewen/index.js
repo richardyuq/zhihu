@@ -34,6 +34,12 @@ module.exports = React.createClass({
 		}
 	},
 	
+	onJiaowu() {
+		return (event) => {
+			location = 'http://survey.veirui.com/jq/11662081.aspx';
+		}
+	},
+	
 	render() {
 		return (
 		    <div className="row-container" style={{ textAlign:'center' }}>
@@ -48,7 +54,9 @@ module.exports = React.createClass({
 		    		</a>	
 		    	</div>
 		    	<div>
-		    		<img src="http://112.74.50.192/static/yw_bk3.png" width="360px" height="140px"/>
+		    		<a onClick={this.onJiaowu()}>
+		    			<img src="http://112.74.50.192/static/yw_bk3.png" width="360px" height="140px"/>
+		    		</a>
 		    	</div>
 		    	<div>
 		    		<img src="http://112.74.50.192/static/yw_bk4.png" width="360px" height="140px"/>	

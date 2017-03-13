@@ -62,12 +62,11 @@ let Main = React.createClass({
 	
 	onSave() {
 		var fv = this.props.form.getFieldsValue();
-		if (!fv["FEED"] || !fv["FEED_TYPE"])
+		if (!fv["FEED"])
 			return;
 		util.ajax({
 			url: '/FHADMINM/app/yuewen/feedback/save.do',
-			data: { 
-				FEED_TYPE: fv["FEED_TYPE"][0],
+			data: {
 				FEED: fv["FEED"],
 				USERNAME: '小明同学'
 			},
@@ -124,9 +123,6 @@ let Main = React.createClass({
 					footer={[{ text: '确定', onPress: () => { this.onSave(); } }]}
 					>
 			      	<list>
-				      	<Picker data={types} cols={1} {...getFieldProps('FEED_TYPE')}>
-				          <List.Item arrow="horizontal">选择类型</List.Item>
-				        </Picker>
 				        <TextareaItem
 			        		{...getFieldProps('FEED')}
 				        	placeholder="输入你的反馈"

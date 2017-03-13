@@ -8,9 +8,9 @@ import React from 'react';
 import ReactDOM from 'react-dom'; 
 import { Carousel } from 'antd-mobile';
 
-
-import ListView from '../common/listView.js';
+import ListView from '../common/listViewAync.js';
 import data from '../common/data.js';
+import util from '../common/util.js';
 
 import "./question.css";
 import "../common/question-row.css";
@@ -28,8 +28,20 @@ module.exports = React.createClass({
 		return this.getContentInitialState();
 	},
 	
-	getData() {
-		return data;
+	componentDidMount() {
+		this.setState({ isLoading: true });
+		util.ajax({
+			url: '/FHADMINM/app/yuewen/getList.do',
+			data: { 'isNew': 'y' },
+			cb: (res) => {
+				this.rData = util.mergeTo(data,res.data);
+				//console.log(this.rdata);
+				this.setState({
+				    dataSource: this.state.dataSource.cloneWithRows(this.rData),
+				    isLoading: false,
+				});
+			}
+		});
 	},
 	
 	/**
@@ -49,12 +61,28 @@ module.exports = React.createClass({
 	 */
 	onListen(index) {
 		return (event) => {
-			if (!window.audio)  {
-				window.audio = document.createElement("audio");
+			let audio = data[index + 1].audio;
+			console.log(audio);
+			if (audio.indexOf(".mp3") > 0) {
+				if (!window.audio)  {
+					window.audio = document.createElement("audio");
+				}
+				window.audio.src = audio;
+				window.audio.play();
+			} else {
+				this.onReplay({ "QUESTION_ID": audio.replace("replay-","") });
 			}
-			window.audio.src = data[index + 1].audio;
-			window.audio.play();
 		}
+	},
+	
+	onReplay(obj) {
+		util.ajax({
+			url: '/FHADMINM/app/yuewen/getRsById.do',
+			data: obj,
+			cb: (res) => {
+				RongShang.replayURLRecording(res.data);
+			}
+		});
 	},
 	
 	onStar(id) {

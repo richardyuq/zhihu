@@ -2,6 +2,30 @@ import $ from 'jquery-ajax';
 import $cookie from 'cookie-browser';
 
 module.exports = {
+	mergeTo: function(data1,data2) {
+		function foundIn(title) {
+			for (let i = 0; i < data1.length; i++) {
+				if (data1[i] == title) {
+					return true;
+				}
+			}
+			return false;
+		}
+		for (let i = 0; i < data2.length; i++) {
+			let obj = Object.assign({}, data1[0]),d = data2[i];
+			let title = d["TITILE"];
+			if (!foundIn(title)) {
+				obj["title"] = title;
+				obj["len"] = d["LEN"];
+				obj["des"] = d["LISTENERS"] + "听过";
+				obj["audio"] = "replay-" + d["QUESTION_ID"];
+				obj["answerer"]["name"] = "小明同学";
+				obj["answerer"]["title"] = "小明同学的头衔";
+				data1.push(obj);
+			}
+		}
+		return data1;
+	},
 	ajax: function(obj) {
 		$.ajax({
 	        url: obj.url,

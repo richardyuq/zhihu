@@ -28,14 +28,14 @@
 }
 
 #loginName,#passWord {
-    width: 4.5rem;
+    width: 4rem;
     height: 0.5rem;
     border: 1px solid #eee;
     margin: 0.2rem;
 }
 
 #btn {
-	width: 4.6rem;
+	width: 4rem;
 	height: 0.6rem;
     border: 1px solid #eee;
     background-color: #00bfad;
