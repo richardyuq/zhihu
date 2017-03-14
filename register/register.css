@@ -7,13 +7,14 @@
 }
 
 .login-box {
-    height: 5.5rem;
+    height: 6.5rem;
     width: 5rem;
     background-color: #fff;
     border: .04rem solid #00bfad;
     position: absolute;
     top: 3rem;
     left: 1.2rem;
+    text-align: center;
 }
 
 .title {
@@ -24,31 +25,42 @@
 }
 
 #loginName,#passWord,#passWord2 {
-    width: 4.5rem;
+    width: 4rem;
     height: 0.5rem;
     border: 1px solid #eee;
     margin: 0.2rem;
 }
 
+.portrait{
+	display: block;
+	border: 1px solid #eee;
+	width: 4rem;
+    height: 0.5rem;
+	margin: 0.2rem auto;
+}
+
 .area2 {
+	width: 4rem;
 	height: 0.5rem;
-	margin: 0.2rem;
+	margin: 0.2rem auto;
 }
 
 #verifyCode {
 	float: left;
-	width: 3rem;
+	width: 2rem;
 	height: 0.5rem;
     border: 1px solid #eee;
+    display:block;
+    float:left
 }
 
 #codeImg {
 	display: block;
-	float: left;
+	float: right;
 }
 
 #btn {
-	width: 4.6rem;
+	width: 4rem;
 	height: 0.6rem;
     border: 1px solid #eee;
     background-color: #00bfad;
